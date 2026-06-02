@@ -476,7 +476,6 @@ layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array(655414, 655360, 12, 720955, 655360, 12, 65590, 655360, 12, 65586, 655360, 12, 393281, 655360, 12, 393286, 655360, 12, 70, 655360, 12, 65601, 655360, 12, 59, 655360, 12, 393275, 655360, 12, 720961, 655360, 12, 589895, 655360, 12, 720946, 720896, 12, 524340, 720896, 12, 393270, 720896, 12, 196668, 720896, 12, 262210, 720896, 12, 262212, 720896, 12, 327749, 720896, 12, 655428, 720896, 12, 655429, 720896, 12, 524352, 720896, 12, 524348, 720896, 12, 589879, 851968, 12, 589883, 851968, 12, 720951, 786432, 12, 655418, 786432, 12, 2359354, 720896, 8, 2359343, 720896, 8, 2555966, 720896, 8, 2162749, 720896, 8, 2097210, 720896, 8, 2162758, 720896, 8, 2490438, 720896, 8, 2555973, 720896, 8, 2621498, 720896, 8, 2359357, 720896, 8, 2228283, 720896, 8, 2621506, 720896, 8, 2359367, 720896, 8, 2293812, 720896, 8, 2424887, 720896, 8, 2424881, 720896, 8, 2228268, 720896, 8, 2359335, 720896, 8, 2424871, 720896, 8, 2424876, 720896, 8, 2424878, 720896, 8, 2490415, 720896, 8, 2293800, 720896, 8, 2228262, 720896, 8, 2228261, 720896, 8, 2293797, 720896, 8, 2424868, 720896, 8, 2490406, 720896, 8, 2293805, 720896, 8, 2228274, 720896, 8, 2162697, 1048576, 8, 2293770, 1114112, 7, 2359304, 1048576, 8, 2424840, 1048576, 8, 2359305, 1048576, 8, 2424841, 1048576, 8, 2359306, 1048576, 8, 2424842, 1048576, 8, 2490372, 1048576, 8, 2490371, 1048576, 8, 2162691, 1048576, 8, 2228227, 1048576, 8, 2031618, 1048576, 8, 2031619, 1048576, 8, 2031616, 1048576, 8, 2228225, 1048576, 8, 2293761, 1048576, 8, 2490368, 1048576, 8, 2293778, 1114112, 7, 2293786, 1114112, 7, 2424856, 1114112, 7, 2424849, 1114112, 7, 2228239, 1114112, 7, 393222, 720896, 12, 589833, 720896, 12, 786432, 720896, 12, 851968, 720896, 12)
 
 [node name="Clicker" type="TextureButton" parent="." unique_id=502928673]
-visible = false
 z_index = 1
 offset_left = 162.0
 offset_top = 78.00001
@@ -486,7 +485,6 @@ scale = Vector2(10, 10)
 texture_normal = ExtResource("2_h2yge")
 
 [node name="Instruction" type="Label" parent="." unique_id=1775144164]
-visible = false
 z_index = 1
 offset_left = 237.0
 offset_top = 308.0
@@ -519,14 +517,14 @@ text = "Shop"
 
 [node name="Shop Background" type="ColorRect" parent="Shop" unique_id=1814778405]
 z_index = 1
-offset_top = 110.0
-offset_right = 1028.0
-offset_bottom = 650.0
+offset_left = -5.0
+offset_top = 99.0
+offset_right = 1023.0
+offset_bottom = 639.0
 mouse_filter = 2
 color = Color(0.2946406, 0.29464063, 0.2946406, 1)
 
 [node name="Multi-Time Upgrades" type="Node2D" parent="Shop" unique_id=420965728]
-visible = false
 
 [node name="Axe Skills" type="Button" parent="Shop/Multi-Time Upgrades" unique_id=930744475]
 z_index = 2
@@ -587,20 +585,20 @@ text = "0"
 
 [node name="Reinforced Handle" type="Button" parent="Shop/Multi-Time Upgrades" unique_id=760523961]
 z_index = 2
-offset_left = -2.0
-offset_top = 371.0
-offset_right = 233.0
-offset_bottom = 425.0
+offset_left = 2.0
+offset_top = 366.0
+offset_right = 238.0
+offset_bottom = 420.0
 text = "Reinforced Handle-2.5k wood
 (1/click -> 41/click)"
 
-[node name="Reinforced Handle Amount Amount" type="Label" parent="Shop/Multi-Time Upgrades/Reinforced Handle" unique_id=523633006]
+[node name="Reinforced Handle Amount" type="Label" parent="Shop/Multi-Time Upgrades/Reinforced Handle" unique_id=523633006]
 z_index = 2
 layout_mode = 0
-offset_left = 233.0
-offset_top = 9.0
-offset_right = 273.0
-offset_bottom = 44.0
+offset_left = 236.0
+offset_top = 10.0
+offset_right = 276.0
+offset_bottom = 45.0
 theme_override_font_sizes/font_size = 25
 text = "0"
 
@@ -630,7 +628,7 @@ offset_top = 419.0
 offset_right = 233.0
 offset_bottom = 473.0
 text = "Lumberjack Team -3k wood
-(0/sec -> 25/sec)"
+(0/sec -> 35/sec)"
 
 [node name="Lumberjack Team Amount" type="Label" parent="Shop/Multi-Time Upgrades/Lumberjack Team" unique_id=1105311347]
 z_index = 2
@@ -651,7 +649,7 @@ offset_bottom = 523.0
 text = "Titanium Edge-8k wood
 (1/click -> 121/click)"
 
-[node name="Titanium Edge Amount Amount" type="Label" parent="Shop/Multi-Time Upgrades/Titanium Edge" unique_id=407090090]
+[node name="Titanium Edge Amount" type="Label" parent="Shop/Multi-Time Upgrades/Titanium Edge" unique_id=407090090]
 z_index = 2
 layout_mode = 0
 offset_left = 237.0
@@ -668,7 +666,7 @@ offset_top = 518.0
 offset_right = 241.0
 offset_bottom = 572.0
 text = "Chainsaw Fleet -8.5k wood
-(0/sec -> 80/sec)"
+(0/sec -> 110/sec)"
 
 [node name="Chainsaw Fleet Amount" type="Label" parent="Shop/Multi-Time Upgrades/Chainsaw Fleet" unique_id=1676878395]
 z_index = 2
@@ -687,7 +685,7 @@ offset_top = 571.0
 offset_right = 242.0
 offset_bottom = 625.0
 text = "Bulldozers -25k wood
-(0/sec -> 200/sec)"
+(0/sec -> 300/sec)"
 
 [node name="Bulldozers Amount" type="Label" parent="Shop/Multi-Time Upgrades/Bulldozers" unique_id=396195532]
 z_index = 2
@@ -708,7 +706,7 @@ offset_bottom = 208.0
 text = "Diamond Plating-35k wood
 (1/click -> 451/click)"
 
-[node name="Diamond Plating Amount Amount" type="Label" parent="Shop/Multi-Time Upgrades/Diamond Plating" unique_id=1767656978]
+[node name="Diamond Plating Amount" type="Label" parent="Shop/Multi-Time Upgrades/Diamond Plating" unique_id=1767656978]
 z_index = 2
 layout_mode = 0
 offset_left = 279.0
@@ -725,7 +723,7 @@ offset_top = 206.0
 offset_right = 556.0
 offset_bottom = 260.0
 text = "Tree Havester-65k wood
-(0/sec -> 600/sec)"
+(0/sec -> 850/sec)"
 
 [node name="Tree Harvester Amount" type="Label" parent="Shop/Multi-Time Upgrades/Tree Harvester" unique_id=1505479061]
 z_index = 2
@@ -765,7 +763,7 @@ offset_bottom = 360.0
 text = "Plasma Cutter-140k wood
 (1/click -> 1801/click)"
 
-[node name="Plasma Cutter Amount Amount" type="Label" parent="Shop/Multi-Time Upgrades/Plasma Cutter" unique_id=857632816]
+[node name="Plasma Cutter Amount" type="Label" parent="Shop/Multi-Time Upgrades/Plasma Cutter" unique_id=857632816]
 z_index = 2
 layout_mode = 0
 offset_left = 294.0
@@ -782,7 +780,7 @@ offset_top = 356.0
 offset_right = 557.0
 offset_bottom = 410.0
 text = "Mass Processing Plant-160k wood
-(0/sec -> 3500/sec)"
+(0/sec -> 2200/sec)"
 
 [node name="Mass Processing Plant Amount" type="Label" parent="Shop/Multi-Time Upgrades/Mass Processing Plant" unique_id=323307396]
 z_index = 2
@@ -801,7 +799,7 @@ offset_top = 407.0
 offset_right = 556.0
 offset_bottom = 461.0
 text = "Automated Logging Rig-555k wood
-(0/sec -> 13000/sec)"
+(0/sec -> 8000/sec)"
 
 [node name="Automated Logging Rig Amount" type="Label" parent="Shop/Multi-Time Upgrades/Automated Logging Rig" unique_id=1325658122]
 z_index = 2
@@ -815,14 +813,14 @@ text = "0"
 
 [node name="Monocular Slicer" type="Button" parent="Shop/Multi-Time Upgrades" unique_id=398313664]
 z_index = 2
-offset_left = 287.0
-offset_top = 461.0
-offset_right = 559.0
-offset_bottom = 515.0
+offset_left = 293.0
+offset_top = 478.0
+offset_right = 565.0
+offset_bottom = 532.0
 text = "Monocular Slicer-600k wood
 (1/click -> 8001/click)"
 
-[node name="Monocular Slicer Amount Amount" type="Label" parent="Shop/Multi-Time Upgrades/Monocular Slicer" unique_id=1016297759]
+[node name="Monocular Slicer Amount" type="Label" parent="Shop/Multi-Time Upgrades/Monocular Slicer" unique_id=1016297759]
 z_index = 2
 layout_mode = 0
 offset_left = 281.0
@@ -834,12 +832,12 @@ text = "0"
 
 [node name="Bio-Diesel Fleet" type="Button" parent="Shop/Multi-Time Upgrades" unique_id=1117119796]
 z_index = 2
-offset_left = 283.0
-offset_top = 515.0
-offset_right = 560.0
-offset_bottom = 569.0
+offset_left = 295.0
+offset_top = 531.0
+offset_right = 572.0
+offset_bottom = 585.0
 text = "Bio-Diesel Fleet-1.9m wood
-(0/sec -> 50k/sec)"
+(0/sec -> 28k/sec)"
 
 [node name="Bio-Diesel Fleet Amount" type="Label" parent="Shop/Multi-Time Upgrades/Bio-Diesel Fleet" unique_id=1983526516]
 z_index = 2
@@ -853,14 +851,14 @@ text = "0"
 
 [node name="Gravity Axe" type="Button" parent="Shop/Multi-Time Upgrades" unique_id=47151655]
 z_index = 2
-offset_left = 280.0
-offset_top = 572.0
-offset_right = 561.0
-offset_bottom = 626.0
+offset_left = 290.0
+offset_top = 584.0
+offset_right = 571.0
+offset_bottom = 638.0
 text = "Gravity Axe-2.2m wood
 (1/click -> 35001/click)"
 
-[node name="Gravity Axe Amount Amount" type="Label" parent="Shop/Multi-Time Upgrades/Gravity Axe" unique_id=589050592]
+[node name="Gravity Axe Amount" type="Label" parent="Shop/Multi-Time Upgrades/Gravity Axe" unique_id=589050592]
 z_index = 2
 layout_mode = 0
 offset_left = 294.0
@@ -877,7 +875,7 @@ offset_top = 152.0
 offset_right = 884.0
 offset_bottom = 206.0
 text = "Forest Strip-Miner-7.5m wood
-(0/sec -> 210k/sec)"
+(0/sec -> 110k/sec)"
 
 [node name="Forest Strip-Miner Amount" type="Label" parent="Shop/Multi-Time Upgrades/Forest Strip-Miner" unique_id=795407743]
 z_index = 2
@@ -896,9 +894,9 @@ offset_top = 207.0
 offset_right = 888.0
 offset_bottom = 261.0
 text = "Quantum Disintegrator-25m wood
-(1/click -> 160k/click)"
+(1/click -> 320k/click)"
 
-[node name="Quantum Disintegrator Amount Amount" type="Label" parent="Shop/Multi-Time Upgrades/Quantum Disintegrator" unique_id=1218228371]
+[node name="Quantum Disintegrator Amount" type="Label" parent="Shop/Multi-Time Upgrades/Quantum Disintegrator" unique_id=1218228371]
 z_index = 2
 layout_mode = 0
 offset_left = 294.0
@@ -914,7 +912,7 @@ offset_left = 598.0
 offset_top = 258.0
 offset_right = 886.0
 offset_bottom = 312.0
-text = "Atomic Harvester-28m wood
+text = "Atomic Harvester-40m wood
 (0/sec -> 850k/sec)"
 
 [node name="Atomic Harvester Amount" type="Label" parent="Shop/Multi-Time Upgrades/Atomic Harvester" unique_id=1194048091]
@@ -934,7 +932,7 @@ offset_top = 314.0
 offset_right = 891.0
 offset_bottom = 368.0
 text = "Molecular Separator-110m wood
-(0/sec -> 4.2m/sec)"
+(0/sec -> 1.6m/sec)"
 
 [node name="Molecular Separator Amount" type="Label" parent="Shop/Multi-Time Upgrades/Molecular Separator" unique_id=1175167809]
 z_index = 2
@@ -953,9 +951,9 @@ offset_top = 368.0
 offset_right = 888.0
 offset_bottom = 422.0
 text = "Solar-Forged Blade-120m wood
-(1/click -> 850k/click)"
+(1/click -> 1.7m/click)"
 
-[node name="Solar-Forged Blade Amount Amount" type="Label" parent="Shop/Multi-Time Upgrades/Solar-Forged Blade" unique_id=1729290421]
+[node name="Solar-Forged Blade Amount" type="Label" parent="Shop/Multi-Time Upgrades/Solar-Forged Blade" unique_id=1729290421]
 z_index = 2
 layout_mode = 0
 offset_left = 293.0
@@ -967,12 +965,12 @@ text = "0"
 
 [node name="Orbital Collecter" type="Button" parent="Shop/Multi-Time Upgrades" unique_id=1244374362]
 z_index = 2
-offset_left = 604.0
-offset_top = 417.0
-offset_right = 889.0
-offset_bottom = 471.0
+offset_left = 598.0
+offset_top = 431.0
+offset_right = 883.0
+offset_bottom = 485.0
 text = "Orbital Collecter-480m wood
-(0/sec -> 22m/sec)"
+(0/sec -> 7.5m/sec)"
 
 [node name="Orbital Collecter Amount" type="Label" parent="Shop/Multi-Time Upgrades/Orbital Collecter" unique_id=1356009139]
 z_index = 2
@@ -986,14 +984,14 @@ text = "0"
 
 [node name="Reality Ripper" type="Button" parent="Shop/Multi-Time Upgrades" unique_id=1558762149]
 z_index = 2
-offset_left = 602.0
-offset_top = 465.0
-offset_right = 887.0
-offset_bottom = 519.0
+offset_left = 601.0
+offset_top = 485.0
+offset_right = 886.0
+offset_bottom = 539.0
 text = "Reality Ripper-600m wood
-(1/click -> 5m/click)"
+(1/click -> 9m/click)"
 
-[node name="Reality Ripper Amount Amount" type="Label" parent="Shop/Multi-Time Upgrades/Reality Ripper" unique_id=140386611]
+[node name="Reality Ripper Amount" type="Label" parent="Shop/Multi-Time Upgrades/Reality Ripper" unique_id=140386611]
 z_index = 2
 layout_mode = 0
 offset_left = 293.0
@@ -1005,12 +1003,12 @@ text = "0"
 
 [node name="Continental Logger" type="Button" parent="Shop/Multi-Time Upgrades" unique_id=1647663493]
 z_index = 2
-offset_left = 603.0
-offset_top = 516.0
-offset_right = 892.0
-offset_bottom = 570.0
+offset_left = 600.0
+offset_top = 536.0
+offset_right = 889.0
+offset_bottom = 590.0
 text = "Continental Logger-2.2b wood
-(0/sec -> 120m/sec)"
+(0/sec -> 32m/sec)"
 
 [node name="Continental Logger Amount" type="Label" parent="Shop/Multi-Time Upgrades/Continental Logger" unique_id=148567728]
 z_index = 2
@@ -1024,14 +1022,14 @@ text = "0"
 
 [node name="The Infinite Click" type="Button" parent="Shop/Multi-Time Upgrades" unique_id=942214233]
 z_index = 2
-offset_left = 611.0
-offset_top = 562.0
-offset_right = 896.0
-offset_bottom = 616.0
+offset_left = 604.0
+offset_top = 584.0
+offset_right = 889.0
+offset_bottom = 638.0
 text = "The Infinite Click-4b wood
-(1/click -> 35m/click)"
+(1/click -> 55m/click)"
 
-[node name="The Infinite Click Amount Amount" type="Label" parent="Shop/Multi-Time Upgrades/The Infinite Click" unique_id=866091854]
+[node name="The Infinite Click Amount" type="Label" parent="Shop/Multi-Time Upgrades/The Infinite Click" unique_id=866091854]
 z_index = 2
 layout_mode = 0
 offset_left = 293.0
@@ -1041,18 +1039,59 @@ offset_bottom = 44.0
 theme_override_font_sizes/font_size = 25
 text = "0"
 
-[node name="More Multi-Time Upgardes" type="Node2D" parent="Shop" unique_id=129364745]
-
-[node name="Planetary Extraction Node" type="Button" parent="Shop/More Multi-Time Upgardes" unique_id=222285397]
+[node name="Tier 1 Label" type="Label" parent="Shop/Multi-Time Upgrades" unique_id=1559276304]
 z_index = 2
-offset_left = 502.0
-offset_top = 170.0
-offset_right = 793.0
-offset_bottom = 224.0
-text = "Planetary Extraction Node-13b wood
-(0/sec -> 650m/sec)"
+offset_left = 82.0
+offset_top = 129.0
+offset_right = 125.0
+offset_bottom = 152.0
+text = "Tier 1"
 
-[node name="Planetary Extraction Node Amount Amount" type="Label" parent="Shop/More Multi-Time Upgardes/Planetary Extraction Node" unique_id=1027718868]
+[node name="Tier 2 Label" type="Label" parent="Shop/Multi-Time Upgrades" unique_id=699237263]
+z_index = 2
+offset_left = 390.0
+offset_top = 127.0
+offset_right = 433.0
+offset_bottom = 150.0
+text = "Tier 2"
+
+[node name="Tier 3 Label" type="Label" parent="Shop/Multi-Time Upgrades" unique_id=409121328]
+z_index = 2
+offset_left = 383.0
+offset_top = 456.0
+offset_right = 426.0
+offset_bottom = 479.0
+text = "Tier 3"
+
+[node name="Tier 4 Label" type="Label" parent="Shop/Multi-Time Upgrades" unique_id=1643419751]
+z_index = 2
+offset_left = 718.0
+offset_top = 133.0
+offset_right = 761.0
+offset_bottom = 156.0
+text = "Tier 4"
+
+[node name="Tier 5 Label" type="Label" parent="Shop/Multi-Time Upgrades" unique_id=339678361]
+z_index = 2
+offset_left = 696.0
+offset_top = 413.0
+offset_right = 739.0
+offset_bottom = 436.0
+text = "Tier 5"
+
+[node name="More Multi-Time Upgardes" type="Node2D" parent="Shop" unique_id=129364745]
+visible = false
+
+[node name="Galactic Harvester" type="Button" parent="Shop/More Multi-Time Upgardes" unique_id=651603782]
+z_index = 2
+offset_left = 2.0
+offset_top = 159.0
+offset_right = 293.0
+offset_bottom = 213.0
+text = "Galactic Harvester-4.5b wood
+(0/sec -> 110m/sec)"
+
+[node name="Galactic Harvester Amount" type="Label" parent="Shop/More Multi-Time Upgardes/Galactic Harvester" unique_id=1236947654]
 z_index = 2
 layout_mode = 0
 offset_left = 294.0
@@ -1062,14 +1101,128 @@ offset_bottom = 51.0
 theme_override_font_sizes/font_size = 25
 text = "0"
 
+[node name="Big Bang Strike" type="Button" parent="Shop/More Multi-Time Upgardes" unique_id=642495457]
+z_index = 2
+offset_left = -1.0
+offset_top = 216.0
+offset_right = 284.0
+offset_bottom = 270.0
+text = "Big Bang Strike-5b wood
+(1/click -> 115m/click)"
+
+[node name="Big Bang Strike Amount" type="Label" parent="Shop/More Multi-Time Upgardes/Big Bang Strike" unique_id=241115703]
+z_index = 2
+layout_mode = 0
+offset_left = 293.0
+offset_top = 9.0
+offset_right = 335.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 25
+text = "0"
+
+[node name="Nebula Processor" type="Button" parent="Shop/More Multi-Time Upgardes" unique_id=1260171038]
+z_index = 2
+offset_left = 2.0
+offset_top = 268.0
+offset_right = 293.0
+offset_bottom = 322.0
+text = "Nebula Processor-12b wood
+(0/sec -> 320m	/sec)"
+
+[node name="Nebula Processor Amount" type="Label" parent="Shop/More Multi-Time Upgardes/Nebula Processor" unique_id=49709745]
+z_index = 2
+layout_mode = 0
+offset_left = 294.0
+offset_top = 16.0
+offset_right = 334.0
+offset_bottom = 51.0
+theme_override_font_sizes/font_size = 25
+text = "0"
+
+[node name="Planetary Extraction Node" type="Button" parent="Shop/More Multi-Time Upgardes" unique_id=222285397]
+z_index = 2
+offset_left = 3.0
+offset_top = 317.0
+offset_right = 294.0
+offset_bottom = 371.0
+text = "Planetary Extraction Node-13b wood
+(0/sec -> 360m/sec)"
+
+[node name="Planetary Extraction Node Amount" type="Label" parent="Shop/More Multi-Time Upgardes/Planetary Extraction Node" unique_id=1027718868]
+z_index = 2
+layout_mode = 0
+offset_left = 294.0
+offset_top = 16.0
+offset_right = 334.0
+offset_bottom = 51.0
+theme_override_font_sizes/font_size = 25
+text = "0"
+
+[node name="Supernova Chopper" type="Button" parent="Shop/More Multi-Time Upgardes" unique_id=337401890]
+z_index = 2
+offset_left = -1.0
+offset_top = 367.0
+offset_right = 284.0
+offset_bottom = 421.0
+text = "Supenova Chopper-15b wood
+(1/click -> 430m/click)"
+
+[node name="Supernova Chopper Amount" type="Label" parent="Shop/More Multi-Time Upgardes/Supernova Chopper" unique_id=304955390]
+z_index = 2
+layout_mode = 0
+offset_left = 293.0
+offset_top = 9.0
+offset_right = 335.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 25
+text = "0"
+
+[node name="Black Hole Extracter" type="Button" parent="Shop/More Multi-Time Upgardes" unique_id=1166240093]
+z_index = 2
+offset_left = -5.0
+offset_top = 416.0
+offset_right = 286.0
+offset_bottom = 470.0
+text = "Black Hole Extracter-45b wood
+(0/sec -> 1.4b/sec)"
+
+[node name="Black Hole Extracter Amount" type="Label" parent="Shop/More Multi-Time Upgardes/Black Hole Extracter" unique_id=224579399]
+z_index = 2
+layout_mode = 0
+offset_left = 294.0
+offset_top = 16.0
+offset_right = 334.0
+offset_bottom = 51.0
+theme_override_font_sizes/font_size = 25
+text = "0"
+
+[node name="Galaxy Spliitter" type="Button" parent="Shop/More Multi-Time Upgardes" unique_id=870127360]
+z_index = 2
+offset_left = -8.0
+offset_top = 467.0
+offset_right = 277.0
+offset_bottom = 521.0
+text = "Galaxy Spliitter-50b wood
+(1/click -> 1.6b/click)"
+
+[node name="Galaxy Spliitter Amount" type="Label" parent="Shop/More Multi-Time Upgardes/Galaxy Spliitter" unique_id=953892208]
+z_index = 2
+layout_mode = 0
+offset_left = 293.0
+offset_top = 9.0
+offset_right = 335.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 25
+text = "0"
+
 [node name="Solar-System Silo" type="Button" parent="Shop/More Multi-Time Upgardes" unique_id=683233978]
 z_index = 2
-offset_left = 499.0
-offset_top = 228.0
-offset_right = 790.0
-offset_bottom = 282.0
+offset_left = 1.0
+offset_top = 521.0
+offset_right = 292.0
+offset_bottom = 575.0
 text = "Solar-System Silo-85b wood
-(0/sec -> 3.8b/sec)"
+(0/sec -> 3b/sec)"
 
 [node name="Solar-System Silo Amount" type="Label" parent="Shop/More Multi-Time Upgardes/Solar-System Silo" unique_id=1746277817]
 z_index = 2
@@ -1081,16 +1234,16 @@ offset_bottom = 51.0
 theme_override_font_sizes/font_size = 25
 text = "0"
 
-[node name="Infinite Energy Engine" type="Button" parent="Shop/More Multi-Time Upgardes" unique_id=1834067759]
+[node name="Dyson Sphere Network" type="Button" parent="Shop/More Multi-Time Upgardes" unique_id=532155327]
 z_index = 2
-offset_left = 503.0
-offset_top = 282.0
-offset_right = 794.0
-offset_bottom = 336.0
-text = "Infinite Energy Engine-550b wood
-(0/sec -> 25b/sec)"
+offset_left = -6.0
+offset_top = 575.0
+offset_right = 285.0
+offset_bottom = 629.0
+text = "Dyson Sphere Network-160b wood
+(0/sec -> 6b/sec)"
 
-[node name="Infinite Energy Engine Amount Amount" type="Label" parent="Shop/More Multi-Time Upgardes/Infinite Energy Engine" unique_id=1992206966]
+[node name="Dyson Sphere Network Amount" type="Label" parent="Shop/More Multi-Time Upgardes/Dyson Sphere Network" unique_id=1508462246]
 z_index = 2
 layout_mode = 0
 offset_left = 294.0
@@ -1100,16 +1253,16 @@ offset_bottom = 51.0
 theme_override_font_sizes/font_size = 25
 text = "0"
 
-[node name="The Infinite Click2" type="Button" parent="Shop/More Multi-Time Upgardes" unique_id=642495457]
+[node name="Dimension Shear" type="Button" parent="Shop/More Multi-Time Upgardes" unique_id=1901287716]
 z_index = 2
-offset_left = 1.0
-offset_top = 162.0
-offset_right = 286.0
-offset_bottom = 216.0
-text = "Big Bang Strike-5b wood
-(1/click -> 120m/click)"
+offset_left = 327.0
+offset_top = 157.0
+offset_right = 612.0
+offset_bottom = 211.0
+text = "Dimension Shear-180b wood
+(1/click -> 7.5b/click)"
 
-[node name="The Infinite Click Amount Amount" type="Label" parent="Shop/More Multi-Time Upgardes/The Infinite Click2" unique_id=241115703]
+[node name="Dimension Shear Amount" type="Label" parent="Shop/More Multi-Time Upgardes/Dimension Shear" unique_id=742125890]
 z_index = 2
 layout_mode = 0
 offset_left = 293.0
@@ -1119,73 +1272,16 @@ offset_bottom = 44.0
 theme_override_font_sizes/font_size = 25
 text = "0"
 
-[node name="The Infinite Click3" type="Button" parent="Shop/More Multi-Time Upgardes" unique_id=337401890]
+[node name="Physics Rewriter" type="Button" parent="Shop/More Multi-Time Upgardes" unique_id=194441331]
 z_index = 2
-offset_left = 1.0
-offset_top = 215.0
-offset_right = 286.0
-offset_bottom = 269.0
-text = "Supervona Chopper-15b wood
-(1/click -> 450m/click)"
-
-[node name="The Infinite Click Amount Amount" type="Label" parent="Shop/More Multi-Time Upgardes/The Infinite Click3" unique_id=304955390]
-z_index = 2
-layout_mode = 0
-offset_left = 293.0
-offset_top = 9.0
-offset_right = 335.0
-offset_bottom = 44.0
-theme_override_font_sizes/font_size = 25
-text = "0"
-
-[node name="The Infinite Click5" type="Button" parent="Shop/More Multi-Time Upgardes" unique_id=870127360]
-z_index = 2
-offset_left = -1.0
-offset_top = 261.0
-offset_right = 284.0
-offset_bottom = 315.0
-text = "Galaxy Spliiter-50b wood
-(1/click -> 1.8b/click)"
-
-[node name="The Infinite Click Amount Amount" type="Label" parent="Shop/More Multi-Time Upgardes/The Infinite Click5" unique_id=953892208]
-z_index = 2
-layout_mode = 0
-offset_left = 293.0
-offset_top = 9.0
-offset_right = 335.0
-offset_bottom = 44.0
-theme_override_font_sizes/font_size = 25
-text = "0"
-
-[node name="The Infinite Click4" type="Button" parent="Shop/More Multi-Time Upgardes" unique_id=1901287716]
-z_index = 2
-offset_left = 7.0
-offset_top = 312.0
-offset_right = 292.0
-offset_bottom = 366.0
-text = "Dimesion Shear-180b wood
-(1/click -> 8b/click)"
-
-[node name="The Infinite Click Amount Amount" type="Label" parent="Shop/More Multi-Time Upgardes/The Infinite Click4" unique_id=742125890]
-z_index = 2
-layout_mode = 0
-offset_left = 293.0
-offset_top = 9.0
-offset_right = 335.0
-offset_bottom = 44.0
-theme_override_font_sizes/font_size = 25
-text = "0"
-
-[node name="The Infinite Click6" type="Button" parent="Shop/More Multi-Time Upgardes" unique_id=194441331]
-z_index = 2
-offset_left = 10.0
-offset_top = 365.0
-offset_right = 295.0
-offset_bottom = 419.0
+offset_left = 325.0
+offset_top = 206.0
+offset_right = 610.0
+offset_bottom = 260.0
 text = "Physics Rewriter-400b wood
-(1/click -> 8b/click)"
+(1/click -> 18b/click)"
 
-[node name="The Infinite Click Amount Amount" type="Label" parent="Shop/More Multi-Time Upgardes/The Infinite Click6" unique_id=198453224]
+[node name="Physics Rewriter Amount" type="Label" parent="Shop/More Multi-Time Upgardes/Physics Rewriter" unique_id=198453224]
 z_index = 2
 layout_mode = 0
 offset_left = 293.0
@@ -1194,31 +1290,115 @@ offset_right = 335.0
 offset_bottom = 44.0
 theme_override_font_sizes/font_size = 25
 text = "0"
+
+[node name="Timeline Convergence" type="Button" parent="Shop/More Multi-Time Upgardes" unique_id=1401933098]
+z_index = 2
+offset_left = 318.0
+offset_top = 261.0
+offset_right = 609.0
+offset_bottom = 315.0
+text = "Timeline Convergence-400b wood
+(0/sec -> 18b/sec)"
+
+[node name="Timeline Convergence Amount" type="Label" parent="Shop/More Multi-Time Upgardes/Timeline Convergence" unique_id=2127881360]
+z_index = 2
+layout_mode = 0
+offset_left = 294.0
+offset_top = 16.0
+offset_right = 334.0
+offset_bottom = 51.0
+theme_override_font_sizes/font_size = 25
+text = "0"
+
+[node name="Infinite Energy Engine" type="Button" parent="Shop/More Multi-Time Upgardes" unique_id=1834067759]
+z_index = 2
+offset_left = 305.0
+offset_top = 318.0
+offset_right = 596.0
+offset_bottom = 372.0
+text = "Infinite Energy Engine-550b wood
+(0/sec -> 26b/sec)"
+
+[node name="Infinite Energy Engine Amount" type="Label" parent="Shop/More Multi-Time Upgardes/Infinite Energy Engine" unique_id=1992206966]
+z_index = 2
+layout_mode = 0
+offset_left = 294.0
+offset_top = 16.0
+offset_right = 334.0
+offset_bottom = 51.0
+theme_override_font_sizes/font_size = 25
+text = "0"
+
+[node name="Absolute Tap" type="Button" parent="Shop/More Multi-Time Upgardes" unique_id=1576342999]
+z_index = 2
+offset_left = 311.0
+offset_top = 369.0
+offset_right = 596.0
+offset_bottom = 423.0
+text = "Absolute Tap-850b wood
+(1/click -> 45b/click)"
+
+[node name="Absolute Tap Amount" type="Label" parent="Shop/More Multi-Time Upgardes/Absolute Tap" unique_id=1803450953]
+z_index = 2
+layout_mode = 0
+offset_left = 293.0
+offset_top = 9.0
+offset_right = 335.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 25
+text = "0"
+
+[node name="Resource Singularity" type="Button" parent="Shop/More Multi-Time Upgardes" unique_id=2110630996]
+z_index = 2
+offset_left = 314.0
+offset_top = 424.0
+offset_right = 605.0
+offset_bottom = 478.0
+text = "Resource Singularity-900b wood
+(0/sec -> 52b/sec)"
+
+[node name="Resource Singularity Amount" type="Label" parent="Shop/More Multi-Time Upgardes/Resource Singularity" unique_id=240529902]
+z_index = 2
+layout_mode = 0
+offset_left = 294.0
+offset_top = 16.0
+offset_right = 334.0
+offset_bottom = 51.0
+theme_override_font_sizes/font_size = 25
+text = "0"
+
+[node name="Tier S Label" type="Label" parent="Shop/More Multi-Time Upgardes" unique_id=146929726]
+z_index = 2
+offset_left = 286.0
+offset_top = 136.0
+offset_right = 332.0
+offset_bottom = 159.0
+text = "Tier S"
 
 [node name="Tabs" type="Node2D" parent="Shop" unique_id=794529368]
 
 [node name="Multi-Time Upgrades Tab" type="Button" parent="Shop/Tabs" unique_id=152866308]
 z_index = 2
-offset_left = 3.0
-offset_top = 112.0
-offset_right = 221.0
-offset_bottom = 144.0
+offset_left = 2.0
+offset_top = 100.0
+offset_right = 220.0
+offset_bottom = 132.0
 text = "Multi-Time Upgrades"
 
 [node name="Multi-Time Upgrades Tab2" type="Button" parent="Shop/Tabs" unique_id=254020359]
 z_index = 2
-offset_left = 220.0
-offset_top = 113.0
-offset_right = 438.0
-offset_bottom = 145.0
+offset_left = 218.0
+offset_top = 98.0
+offset_right = 436.0
+offset_bottom = 130.0
 text = "More Multi-Time Upgrades"
 
 [node name="One-Time Upgrades Tab" type="Button" parent="Shop/Tabs" unique_id=893006801]
 z_index = 2
-offset_left = 433.0
-offset_top = 113.0
-offset_right = 644.0
-offset_bottom = 144.0
+offset_left = 435.0
+offset_top = 99.0
+offset_right = 646.0
+offset_bottom = 130.0
 text = "One-Time Upgrades"
 
 [node name="Research" type="Button" parent="Shop/Tabs" unique_id=1319181404]
@@ -1231,10 +1411,10 @@ text = "Research"
 
 [node name="Prestige Shop" type="Button" parent="Shop/Tabs" unique_id=978697752]
 z_index = 2
-offset_left = 648.0
-offset_top = 116.0
-offset_right = 842.0
-offset_bottom = 147.0
+offset_left = 640.0
+offset_top = 99.0
+offset_right = 834.0
+offset_bottom = 130.0
 text = "Prestige Shop"
 
 [node name="One-Time Upgrades" type="Node2D" parent="Shop" unique_id=1158990690]
@@ -1247,7 +1427,7 @@ offset_top = 153.0
 offset_right = 327.0
 offset_bottom = 207.0
 text = "Reinforced Gloves(500 Wood)
-Click Power x2"
+Click Power is doubled"
 
 [node name="Coffee Machine" type="Button" parent="Shop/One-Time Upgrades" unique_id=1820919586]
 z_index = 2
@@ -1256,16 +1436,17 @@ offset_top = 202.0
 offset_right = 325.0
 offset_bottom = 256.0
 text = "Coffee Machine(1.2k Wood)
-Worker Efficency x1.1"
+Workers are 1.1x more efficent"
 
 [node name="Lunch Break Schedule" type="Button" parent="Shop/One-Time Upgrades" unique_id=601481077]
 z_index = 2
-offset_left = -418.0
-offset_top = 220.0
-offset_right = -92.0
-offset_bottom = 274.0
+offset_left = -1.0
+offset_top = 249.0
+offset_right = 325.0
+offset_bottom = 303.0
 text = "Lunch Break Schedule(4k wood)
-Idle efficency x1.15"
+
+Idling is 1.15 times more efficent"
 
 [node name="Bulk Buying License" type="Button" parent="Shop/One-Time Upgrades" unique_id=1853416948]
 z_index = 2
@@ -1279,50 +1460,49 @@ Can use Buy x10
 
 [node name="Steel Axe Head" type="Button" parent="Shop/One-Time Upgrades" unique_id=1126158261]
 z_index = 2
-offset_left = -3.0
-offset_top = 253.0
-offset_right = 324.0
-offset_bottom = 307.0
+offset_left = -1.0
+offset_top = 301.0
+offset_right = 326.0
+offset_bottom = 355.0
 text = "Steel Axe Head(25k Wood)
-+50 per click"
+500 more click power(without multipliers)"
 
 [node name="Turbochargers" type="Button" parent="Shop/One-Time Upgrades" unique_id=446773369]
 z_index = 2
-offset_left = -2.0
-offset_top = 302.0
-offset_right = 323.0
-offset_bottom = 379.0
+offset_left = -5.0
+offset_top = 357.0
+offset_right = 320.0
+offset_bottom = 434.0
 text = "Turbochargers(75k Wood)
-Bulldozers,Tree Harvester,
-Industrial Mulcher Efficency x1.25"
+Bulldozers,Tree Harvesters and
+Industrial Mulcher are 1.25 more efficent"
 
 [node name="Log Flume" type="Button" parent="Shop/One-Time Upgrades" unique_id=1003950761]
 z_index = 2
-offset_left = 2.0
-offset_top = 383.0
-offset_right = 328.0
-offset_bottom = 437.0
+offset_top = 430.0
+offset_right = 326.0
+offset_bottom = 484.0
 text = "Log Flume(200k Wood)
 
-All Multi-Time Upgrades are 10% cheaper"
+Multi-Time Upgrades Price Multiplier - 0.01"
 
 [node name="GPS Mapping" type="Button" parent="Shop/One-Time Upgrades" unique_id=1300134158]
 z_index = 2
-offset_left = 2.0
-offset_top = 440.0
-offset_right = 329.0
-offset_bottom = 494.0
+offset_left = -4.0
+offset_top = 477.0
+offset_right = 323.0
+offset_bottom = 531.0
 text = "GPS Mapping(500k wood)
-Click Power x4(Will be changed)"
+Critical Click is 4% more likely"
 
 [node name="Shift Management" type="Button" parent="Shop/One-Time Upgrades" unique_id=2128319541]
 z_index = 2
 offset_left = 3.0
-offset_top = 494.0
+offset_top = 533.0
 offset_right = 327.0
-offset_bottom = 548.0
+offset_bottom = 587.0
 text = "Shift Management(1.5M wood)
-Worker Efficency x2(will be changed)"
+Idling is 2 times more efficent"
 
 [node name="Hydraulic Press" type="Button" parent="Shop/One-Time Upgrades" unique_id=1007451926]
 z_index = 2
@@ -1335,49 +1515,49 @@ Future Update"
 
 [node name="Carbon Fiber Saws" type="Button" parent="Shop/One-Time Upgrades" unique_id=1850031291]
 z_index = 2
-offset_left = 1.0
-offset_top = 546.0
-offset_right = 328.0
-offset_bottom = 600.0
+offset_left = -1.0
+offset_top = 586.0
+offset_right = 326.0
+offset_bottom = 640.0
 text = "Carbon Fiber Saws(25M wood)
-Chainsaw Fleet Efficency x3"
+Chainsaw Fleet are 3 times more efficenct"
 
 [node name="Diamond-Coated Teeth" type="Button" parent="Shop/One-Time Upgrades" unique_id=1568144807]
 z_index = 2
-offset_left = 10.0
-offset_top = 594.0
-offset_right = 332.0
-offset_bottom = 648.0
+offset_left = 331.0
+offset_top = 157.0
+offset_right = 672.0
+offset_bottom = 211.0
 text = "Diamond-Coated teeth(100M wood)
 
-Click power x8(will be changed)"
+8 times more click power"
 
 [node name="Automation Logic Controller" type="Button" parent="Shop/One-Time Upgrades" unique_id=1126887236]
 z_index = 2
-offset_left = 328.0
-offset_top = 153.0
-offset_right = 673.0
-offset_bottom = 207.0
+offset_left = 323.0
+offset_top = 206.0
+offset_right = 668.0
+offset_bottom = 260.0
 text = "Autonation Logic Controller(500M wood)
 Multi-Time Upgrades Price Multiplier - 0.02
 "
 
 [node name="Vertical Intergration" type="Button" parent="Shop/One-Time Upgrades" unique_id=1415809421]
 z_index = 2
-offset_left = 329.0
-offset_top = 202.0
-offset_right = 674.0
-offset_bottom = 256.0
+offset_left = 327.0
+offset_top = 253.0
+offset_right = 672.0
+offset_bottom = 307.0
 text = "Vertical Intergration(2.5B wood)
 Wood per second x10
 "
 
 [node name="The Eternal Forest" type="Button" parent="Shop/One-Time Upgrades" unique_id=1679874035]
 z_index = 2
-offset_left = 329.0
-offset_top = 256.0
-offset_right = 666.0
-offset_bottom = 310.0
+offset_left = 324.0
+offset_top = 301.0
+offset_right = 671.0
+offset_bottom = 355.0
 text = "The Eternal Forest(10B wood)
 Wood Prodution x10"
 
@@ -1396,83 +1576,70 @@ visible = false
 
 [node name="They\'re mine!" type="Button" parent="Shop/Prestige Upgrades" unique_id=1081013114]
 z_index = 2
-offset_left = 2.0
-offset_top = 152.0
-offset_right = 291.0
-offset_bottom = 207.0
+offset_left = 1.0
+offset_top = 144.0
+offset_right = 292.0
+offset_bottom = 199.0
 text = "They're mine!(5 Golden Seeds)
 Keep one-time upgrades"
 
 [node name="Fertile Soil" type="Button" parent="Shop/Prestige Upgrades" unique_id=1880205166]
 z_index = 2
 offset_left = -1.0
-offset_top = 206.0
+offset_top = 198.0
 offset_right = 292.0
-offset_bottom = 261.0
+offset_bottom = 253.0
 text = "Fertile Soil(10 Golden Seeds)
  x4 wood prodution"
 
 [node name="Smart Workers" type="Button" parent="Shop/Prestige Upgrades" unique_id=491569356]
 z_index = 2
-offset_left = -3.0
-offset_top = 254.0
-offset_right = 292.0
-offset_bottom = 308.0
+offset_top = 251.0
+offset_right = 291.0
+offset_bottom = 305.0
 text = "Smart Workers(10 Golden Seeds)
 Worker Efficency x5"
 
 [node name="Autobuyer I" type="Button" parent="Shop/Prestige Upgrades" unique_id=1457239508]
 z_index = 2
-offset_left = 1.0
-offset_top = 301.0
-offset_right = 300.0
-offset_bottom = 378.0
+offset_top = 303.0
+offset_right = 291.0
+offset_bottom = 357.0
 text = "Autobuyer I(20 Golden Seeds)
-Autobuy Axe Skills,
-Worker and Handsaw"
+Autobuy Tier 1 Multi-Time Upgrades"
 
 [node name="Golden Saw" type="Button" parent="Shop/Prestige Upgrades" unique_id=2058000782]
 z_index = 2
-offset_left = 3.0
-offset_top = 377.0
-offset_right = 298.0
-offset_bottom = 431.0
-text = "Golden Saw(25 Golden Seeds)
+offset_left = -3.0
+offset_top = 359.0
+offset_right = 289.0
+offset_bottom = 413.0
+text = "Golden Axe(25 Golden Seeds)
 x10 click power"
 
 [node name="Saw Efficency" type="Button" parent="Shop/Prestige Upgrades" unique_id=1731549419]
 z_index = 2
-offset_left = -6.0
-offset_top = 427.0
-offset_right = 293.0
-offset_bottom = 481.0
+offset_top = 410.0
+offset_right = 292.0
+offset_bottom = 464.0
 text = "Saw Efficency(50 Golden Seeds)
 x15 click multiplier"
 
-[node name="Printers" type="Button" parent="Shop/Prestige Upgrades" unique_id=441860786]
-z_index = 2
-offset_left = -355.0
-offset_top = 228.0
-offset_right = -49.0
-offset_bottom = 282.0
-text = "Printers(50 Golden Seeds)
-Unlock Printers"
-
 [node name="Prestige Boost" type="Button" parent="Shop/Prestige Upgrades" unique_id=2106129457]
 z_index = 2
-offset_left = -1.0
-offset_top = 482.0
-offset_right = 303.0
-offset_bottom = 536.0
+offset_left = -3.0
+offset_top = 459.0
+offset_right = 291.0
+offset_bottom = 513.0
 text = "Prestige Boost(100 Golden seeds)
-x2 Golden Seeds obtained in prestidge"
+x2 Golden Seeds obtained in prestige"
 
 [node name="Discount" type="Button" parent="Shop/Prestige Upgrades" unique_id=793276844]
 z_index = 2
-offset_left = 1.0
-offset_top = 534.0
-offset_right = 305.0
-offset_bottom = 611.0
+offset_left = -4.0
+offset_top = 509.0
+offset_right = 292.0
+offset_bottom = 586.0
 text = "Discount(100 Golden Seeds)
 
 Multi-Time Upgrades Price
@@ -1480,26 +1647,214 @@ Multiplier - 0.03"
 
 [node name="Autobuyer II" type="Button" parent="Shop/Prestige Upgrades" unique_id=1841347222]
 z_index = 2
-offset_left = 287.0
-offset_top = 154.0
-offset_right = 588.0
-offset_bottom = 231.0
+offset_left = 3.0
+offset_top = 581.0
+offset_right = 297.0
+offset_bottom = 635.0
 text = "Autobuyer II(100 Golden Seeds)
-Autobuy Axe Reforge,
-Lumberjack Team,Chainsaw Fleet"
+Autobuy Tier 2 Multi-Time Upgrades"
+
+[node name="Wood Bank" type="Button" parent="Shop/Prestige Upgrades" unique_id=752689643]
+z_index = 2
+offset_left = 292.0
+offset_top = 144.0
+offset_right = 617.0
+offset_bottom = 199.0
+text = "Wood Bank(120 Golden Seeds)
+Keep 10% of wood after prestige"
+
+[node name="New Tools" type="Button" parent="Shop/Prestige Upgrades" unique_id=1354301726]
+z_index = 2
+offset_left = 290.0
+offset_top = 200.0
+offset_right = 616.0
+offset_bottom = 255.0
+text = "New Tools(150 Golden Seeds)
+x2 Wood Production"
+
+[node name="Golden Axe" type="Button" parent="Shop/Prestige Upgrades" unique_id=2093525156]
+z_index = 2
+offset_left = 291.0
+offset_top = 251.0
+offset_right = 618.0
+offset_bottom = 306.0
+text = "Golden Saw(180 Golden Seeds)
+x20 Click Power"
 
 [node name="Autobuyer III" type="Button" parent="Shop/Prestige Upgrades" unique_id=593913275]
 z_index = 2
-offset_left = 294.0
-offset_top = 236.0
-offset_right = 594.0
-offset_bottom = 313.0
+offset_left = 291.0
+offset_top = 304.0
+offset_right = 622.0
+offset_bottom = 358.0
 text = "Autobuyer III(200 Golden Seeds)
-Autobuy Bulldozers,Tree 
-Harvester,Industrial Mulcher"
+Autobuy Tier 3 Multi-Time Upgrades"
+
+[node name="Seed Boost" type="Button" parent="Shop/Prestige Upgrades" unique_id=234734920]
+z_index = 2
+offset_left = 285.0
+offset_top = 356.0
+offset_right = 627.0
+offset_bottom = 410.0
+text = "Seed Boost(200 Golden Seeds)
+x3 Golden Seeds obtained in prestige"
+
+[node name="Discount+" type="Button" parent="Shop/Prestige Upgrades" unique_id=1836175278]
+z_index = 2
+offset_left = 283.0
+offset_top = 409.0
+offset_right = 620.0
+offset_bottom = 463.0
+text = "Discount+(200 Golden Seeds)
+Multi-Time Upgrades Price Multiplier - 0.04"
+
+[node name="Golden Handle" type="Button" parent="Shop/Prestige Upgrades" unique_id=556729293]
+z_index = 2
+offset_left = 289.0
+offset_top = 464.0
+offset_right = 631.0
+offset_bottom = 518.0
+text = "Golden Handle(300 Golden Seeds)
+x30 Click Power"
+
+[node name="Autobuyer Boost" type="Button" parent="Shop/Prestige Upgrades" unique_id=1150306648]
+z_index = 2
+offset_left = 290.0
+offset_top = 515.0
+offset_right = 631.0
+offset_bottom = 569.0
+text = "Autobuyer Boost(400 Golden Seeds)
+Autobuy time -= 30s"
+
+[node name="Cost Efficency" type="Button" parent="Shop/Prestige Upgrades" unique_id=1638156864]
+z_index = 2
+offset_left = 295.0
+offset_top = 573.0
+offset_right = 632.0
+offset_bottom = 627.0
+text = "Cost Efficency(500 Golden Seeds)
+Multi-Time Upgrades Price Multiplier - 0.05"
+
+[node name="Autobuyer IV" type="Button" parent="Shop/Prestige Upgrades" unique_id=352060324]
+z_index = 2
+offset_left = 617.0
+offset_top = 146.0
+offset_right = 953.0
+offset_bottom = 200.0
+text = "Autobuyer IV(600 Golden Seeds)
+Autobuy Tier 4 Multi-Time Upgrades"
+
+[node name="Cosmic HQ" type="Button" parent="Shop/Prestige Upgrades" unique_id=1576127392]
+z_index = 2
+offset_left = 613.0
+offset_top = 198.0
+offset_right = 949.0
+offset_bottom = 252.0
+text = "Cosmic HQ(750 Golden Seeds)
+x8 Wood Production"
+
+[node name="Golden Plasma Cutter" type="Button" parent="Shop/Prestige Upgrades" unique_id=741524195]
+z_index = 2
+offset_left = 615.0
+offset_top = 251.0
+offset_right = 955.0
+offset_bottom = 305.0
+text = "Golden Plasma Cutter(900 Golden Seeds)
+x50 Click Power"
+
+[node name="Wood Saving Account" type="Button" parent="Shop/Prestige Upgrades" unique_id=1845410841]
+z_index = 2
+offset_left = 624.0
+offset_top = 307.0
+offset_right = 954.0
+offset_bottom = 362.0
+text = "Wood Saving Account(1000 Golden Seeds)
+Keep +25% of wood after prestige"
+
+[node name="Autobuyer V" type="Button" parent="Shop/Prestige Upgrades" unique_id=1336906141]
+z_index = 2
+offset_left = 623.0
+offset_top = 360.0
+offset_right = 953.0
+offset_bottom = 414.0
+text = "Autobuyer V(1250 Golden Seeds)
+Autobuy Tier 5 Multi-Time Upgrades"
+
+[node name="Milky Way HQ" type="Button" parent="Shop/Prestige Upgrades" unique_id=774427078]
+z_index = 2
+offset_left = 625.0
+offset_top = 409.0
+offset_right = 949.0
+offset_bottom = 463.0
+text = "Milky Way HQ(1500 Golden Seeds)
+x15 Wood Production"
+
+[node name="Careful Scavenging" type="Button" parent="Shop/Prestige Upgrades" unique_id=965114560]
+z_index = 2
+offset_left = 632.0
+offset_top = 465.0
+offset_right = 954.0
+offset_bottom = 519.0
+text = "Careful Scavenging(2000 Golden seeds)
+x5 Golden Seeds obtained in prestige"
+
+[node name="Autobuyer VI" type="Button" parent="Shop/Prestige Upgrades" unique_id=1612656144]
+z_index = 2
+offset_left = 625.0
+offset_top = 517.0
+offset_right = 950.0
+offset_bottom = 571.0
+text = "Autobuyer VI(2500 Golden Seeds)
+Autobuy Tier S Multi-Time Upgrades"
+
+[node name="Unused" type="Node2D" parent="Shop/Prestige Upgrades" unique_id=2021988302]
+
+[node name="They\'re mine!3" type="Button" parent="Shop/Prestige Upgrades/Unused" unique_id=9913889]
+z_index = 2
+offset_left = -423.0
+offset_top = -290.0
+offset_right = -134.0
+offset_bottom = -235.0
+text = "Quick Hands I(30 Golden Seeds)
++5% Global wood production"
+
+[node name="They\'re mine!4" type="Button" parent="Shop/Prestige Upgrades/Unused" unique_id=500137939]
+z_index = 2
+offset_left = -421.0
+offset_top = -224.0
+offset_right = -132.0
+offset_bottom = -169.0
+text = "Efficent Tools I(40 Golden Seeds)
+Multi-Time Upgrades -2% Cost"
+
+[node name="They\'re mine!2" type="Button" parent="Shop/Prestige Upgrades/Unused" unique_id=1379362134]
+z_index = 2
+offset_left = -417.0
+offset_top = -345.0
+offset_right = -128.0
+offset_bottom = -290.0
+text = "Wooden Fortune I(15 Golden Seeds)
++5% Global wood production"
+
+[node name="Printers" type="Button" parent="Shop/Prestige Upgrades/Unused" unique_id=441860786]
+z_index = 2
+offset_left = -406.0
+offset_top = -193.0
+offset_right = -100.0
+offset_bottom = -139.0
+text = "Printers(50 Golden Seeds)
+Unlock Printers"
+
+[node name="Autobuyer III3" type="Button" parent="Shop/Prestige Upgrades/Unused" unique_id=698712564]
+z_index = 2
+offset_left = -387.0
+offset_top = -157.0
+offset_right = -71.0
+offset_bottom = -103.0
+text = "Industrial Revolution(200 Golden Seeds)
+x4 Idle Power"
 
 [node name="Trees" type="Node2D" parent="." unique_id=193500479]
-visible = false
 
 [node name="Tree" type="TextureButton" parent="Trees" unique_id=805709255]
 z_index = 1
@@ -1593,6 +1948,7 @@ texture_normal = ExtResource("5_lquwl")
 [node name="Mushroom Boost Time" type="Timer" parent="Unused" unique_id=1240823851]
 
 [node name="Achievements" type="Node2D" parent="Unused" unique_id=1874374521]
+visible = false
 position = Vector2(-72.79999, -40.799995)
 scale = Vector2(0.19999999, 0.19999999)
 
@@ -1620,7 +1976,6 @@ offset_bottom = 620.0
 color = Color(0.37665847, 0.37665847, 0.37665847, 1)
 
 [node name="Save+Load" type="Node2D" parent="." unique_id=2124130089]
-visible = false
 
 [node name="Save Button" type="TextureButton" parent="Save+Load" unique_id=1517842701]
 offset_left = -27.0
@@ -1653,7 +2008,6 @@ offset_bottom = 636.0
 text = "Load"
 
 [node name="Currency Bar" type="Node2D" parent="." unique_id=1982206857]
-visible = false
 
 [node name="Wood Icon" type="Sprite2D" parent="Currency Bar" unique_id=1143410333]
 z_index = 2
@@ -1707,7 +2061,7 @@ wait_time = 60.0
 autostart = true
 
 [node name="Autobuyer Timer" type="Timer" parent="." unique_id=415912632]
-wait_time = 20.0
+wait_time = 30.0
 
 [connection signal="pressed" from="Clicker" to="." method="_on_clicker_pressed"]
 [connection signal="timeout" from="Wood Timer" to="." method="_on_wood_timer_timeout"]
@@ -1727,6 +2081,7 @@ wait_time = 20.0
 [connection signal="pressed" from="Shop/Tabs/Prestige Shop" to="." method="_on_prestige_shop_pressed"]
 [connection signal="pressed" from="Shop/One-Time Upgrades/Reinforced Gloves" to="." method="_on_reinforced_gloves_pressed"]
 [connection signal="pressed" from="Shop/One-Time Upgrades/Coffee Machine" to="." method="_on_coffee_machine_pressed"]
+[connection signal="pressed" from="Shop/One-Time Upgrades/Lunch Break Schedule" to="." method="_on_lunch_break_schudule_pressed"]
 [connection signal="pressed" from="Shop/One-Time Upgrades/Steel Axe Head" to="." method="_on_steel_axe_head_pressed"]
 [connection signal="pressed" from="Shop/One-Time Upgrades/Turbochargers" to="." method="_on_turbochargers_pressed"]
 [connection signal="pressed" from="Shop/One-Time Upgrades/Log Flume" to="." method="_on_log_flume_pressed"]
@@ -1748,6 +2103,7 @@ wait_time = 20.0
 [connection signal="pressed" from="Shop/Prestige Upgrades/Discount" to="." method="_on_discount_pressed"]
 [connection signal="pressed" from="Shop/Prestige Upgrades/Autobuyer II" to="." method="_on_autobuyer_ii_pressed"]
 [connection signal="pressed" from="Shop/Prestige Upgrades/Autobuyer III" to="." method="_on_autobuyer_iii_pressed"]
+[connection signal="pressed" from="Shop/Prestige Upgrades/Unused/Autobuyer III3" to="." method="_on_autobuyer_iii_pressed"]
 [connection signal="pressed" from="Trees/Tree" to="." method="_on_tree_pressed"]
 [connection signal="pressed" from="Trees/Tree2" to="." method="_on_tree_pressed"]
 [connection signal="pressed" from="Trees/Tree3" to="." method="_on_tree_pressed"]
