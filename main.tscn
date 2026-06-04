@@ -1426,32 +1426,30 @@ offset_bottom = 130.0
 text = "Prestige Shop"
 
 [node name="One-Time Upgrades" type="Node2D" parent="Shop" unique_id=1158990690]
-visible = false
 
 [node name="Reinforced Gloves" type="Button" parent="Shop/One-Time Upgrades" unique_id=708477802]
 z_index = 2
 offset_left = 1.0
 offset_top = 153.0
-offset_right = 327.0
+offset_right = 334.0
 offset_bottom = 207.0
 text = "Reinforced Gloves(500 Wood)
 Click Power is doubled"
 
 [node name="Coffee Machine" type="Button" parent="Shop/One-Time Upgrades" unique_id=1820919586]
 z_index = 2
-offset_left = 1.0
-offset_top = 202.0
-offset_right = 325.0
-offset_bottom = 256.0
+offset_left = 2.0
+offset_top = 207.0
+offset_right = 332.0
+offset_bottom = 261.0
 text = "Coffee Machine(1.2k Wood)
 Workers are 1.1x more efficent"
 
 [node name="Lunch Break Schedule" type="Button" parent="Shop/One-Time Upgrades" unique_id=601481077]
 z_index = 2
-offset_left = -1.0
-offset_top = 249.0
-offset_right = 325.0
-offset_bottom = 303.0
+offset_top = 261.0
+offset_right = 331.0
+offset_bottom = 315.0
 text = "Lunch Break Schedule(4k wood)
 
 Idling is 1.15 times more efficent"
@@ -1468,47 +1466,46 @@ Can use Buy x10
 
 [node name="Steel Axe Head" type="Button" parent="Shop/One-Time Upgrades" unique_id=1126158261]
 z_index = 2
-offset_left = -1.0
-offset_top = 301.0
-offset_right = 326.0
-offset_bottom = 355.0
+offset_top = 314.0
+offset_right = 331.0
+offset_bottom = 368.0
 text = "Steel Axe Head(25k Wood)
 500 more click power(without multipliers)"
 
 [node name="Turbochargers" type="Button" parent="Shop/One-Time Upgrades" unique_id=446773369]
 z_index = 2
-offset_left = -5.0
-offset_top = 357.0
-offset_right = 320.0
-offset_bottom = 434.0
+offset_left = 3.0
+offset_top = 369.0
+offset_right = 334.0
+offset_bottom = 446.0
 text = "Turbochargers(75k Wood)
 Bulldozers,Tree Harvesters and
 Industrial Mulcher are 1.25 more efficent"
 
 [node name="Log Flume" type="Button" parent="Shop/One-Time Upgrades" unique_id=1003950761]
 z_index = 2
-offset_top = 430.0
-offset_right = 326.0
-offset_bottom = 484.0
+offset_top = 446.0
+offset_right = 337.0
+offset_bottom = 500.0
 text = "Log Flume(200k Wood)
 
 Multi-Time Upgrades Price Multiplier - 0.01"
 
 [node name="GPS Mapping" type="Button" parent="Shop/One-Time Upgrades" unique_id=1300134158]
 z_index = 2
-offset_left = -4.0
-offset_top = 477.0
-offset_right = 323.0
-offset_bottom = 531.0
+offset_left = 2.0
+offset_top = 494.0
+offset_right = 329.0
+offset_bottom = 548.0
 text = "GPS Mapping(500k wood)
 Critical Click is 4% more likely"
 
 [node name="Shift Management" type="Button" parent="Shop/One-Time Upgrades" unique_id=2128319541]
 z_index = 2
-offset_left = 3.0
-offset_top = 533.0
-offset_right = 327.0
-offset_bottom = 587.0
+offset_left = 4.0
+offset_top = 545.0
+offset_right = 328.0
+offset_bottom = 599.0
 text = "Shift Management(1.5M wood)
 Idling is 2 times more efficent"
 
@@ -1524,57 +1521,102 @@ Future Update"
 [node name="Carbon Fiber Saws" type="Button" parent="Shop/One-Time Upgrades" unique_id=1850031291]
 z_index = 2
 offset_left = -1.0
-offset_top = 586.0
-offset_right = 326.0
-offset_bottom = 640.0
+offset_top = 594.0
+offset_right = 330.0
+offset_bottom = 648.0
 text = "Carbon Fiber Saws(25M wood)
 Chainsaw Fleet are 3 times more efficenct"
 
 [node name="Diamond-Coated Teeth" type="Button" parent="Shop/One-Time Upgrades" unique_id=1568144807]
 z_index = 2
-offset_left = 331.0
-offset_top = 157.0
-offset_right = 672.0
-offset_bottom = 211.0
+offset_left = 341.0
+offset_top = 152.0
+offset_right = 682.0
+offset_bottom = 206.0
 text = "Diamond-Coated teeth(100M wood)
 
 8 times more click power"
 
 [node name="Automation Logic Controller" type="Button" parent="Shop/One-Time Upgrades" unique_id=1126887236]
 z_index = 2
-offset_left = 323.0
-offset_top = 206.0
-offset_right = 668.0
-offset_bottom = 260.0
+offset_left = 333.0
+offset_top = 205.0
+offset_right = 678.0
+offset_bottom = 259.0
 text = "Autonation Logic Controller(500M wood)
 Multi-Time Upgrades Price Multiplier - 0.02
 "
 
 [node name="Vertical Intergration" type="Button" parent="Shop/One-Time Upgrades" unique_id=1415809421]
 z_index = 2
-offset_left = 327.0
-offset_top = 253.0
-offset_right = 672.0
-offset_bottom = 307.0
+offset_left = 334.0
+offset_top = 257.0
+offset_right = 679.0
+offset_bottom = 311.0
 text = "Vertical Intergration(2.5B wood)
 Wood per second x10
 "
 
 [node name="The Eternal Forest" type="Button" parent="Shop/One-Time Upgrades" unique_id=1679874035]
 z_index = 2
-offset_left = 324.0
-offset_top = 301.0
-offset_right = 671.0
-offset_bottom = 355.0
+offset_left = 332.0
+offset_top = 307.0
+offset_right = 679.0
+offset_bottom = 361.0
 text = "The Eternal Forest(10B wood)
 Wood Prodution x10"
 
-[node name="Prestige" type="Button" parent="Shop/One-Time Upgrades" unique_id=1195479468]
+[node name="Biomass Refining" type="Button" parent="Shop/One-Time Upgrades" unique_id=2012263701]
 z_index = 2
-offset_left = 784.0
-offset_top = 560.0
-offset_right = 936.0
-offset_bottom = 614.0
+offset_left = 334.0
+offset_top = 358.0
+offset_right = 681.0
+offset_bottom = 412.0
+text = "Biomass Refining(25B wood)
+Wood Production x12"
+
+[node name="Global Optimisation" type="Button" parent="Shop/One-Time Upgrades" unique_id=1152985385]
+z_index = 2
+offset_left = 332.0
+offset_top = 406.0
+offset_right = 679.0
+offset_bottom = 460.0
+text = "Global Optimisation(60B wood)
+Multi-Time Upgrades Price Multiplier -0.03"
+
+[node name="Saw Upgrade" type="Button" parent="Shop/One-Time Upgrades" unique_id=1365565869]
+z_index = 2
+offset_left = 334.0
+offset_top = 457.0
+offset_right = 681.0
+offset_bottom = 511.0
+text = "Saw Upgrade(150b wood)
+Click Power x15"
+
+[node name="Salary Increase" type="Button" parent="Shop/One-Time Upgrades" unique_id=1665723606]
+z_index = 2
+offset_left = 330.0
+offset_top = 514.0
+offset_right = 677.0
+offset_bottom = 568.0
+text = "Salary Increase(400B Wood)
+Idling is 5 times more efficent"
+
+[node name="Master Logger" type="Button" parent="Shop/One-Time Upgrades" unique_id=1489321216]
+z_index = 2
+offset_left = 326.0
+offset_top = 566.0
+offset_right = 673.0
+offset_bottom = 620.0
+text = "Master Logger(800b wood)
+Click Power x20"
+
+[node name="Prestige Button" type="Button" parent="Shop/One-Time Upgrades" unique_id=1195479468]
+z_index = 2
+offset_left = 780.0
+offset_top = 593.0
+offset_right = 932.0
+offset_bottom = 647.0
 theme_override_colors/font_color = Color(0.66509885, 0, 0.09747303, 1)
 theme_override_font_sizes/font_size = 32
 text = "PRESTIGE"
@@ -1584,26 +1626,25 @@ visible = false
 
 [node name="They\'re mine!" type="Button" parent="Shop/Prestige Upgrades" unique_id=1081013114]
 z_index = 2
-offset_left = 1.0
-offset_top = 144.0
-offset_right = 292.0
-offset_bottom = 199.0
+offset_left = 2.0
+offset_top = 143.0
+offset_right = 287.0
+offset_bottom = 198.0
 text = "They're mine!(5 Golden Seeds)
 Keep one-time upgrades"
 
 [node name="Fertile Soil" type="Button" parent="Shop/Prestige Upgrades" unique_id=1880205166]
 z_index = 2
-offset_left = -1.0
-offset_top = 198.0
-offset_right = 292.0
-offset_bottom = 253.0
+offset_top = 196.0
+offset_right = 287.0
+offset_bottom = 251.0
 text = "Fertile Soil(10 Golden Seeds)
  x4 wood prodution"
 
 [node name="Smart Workers" type="Button" parent="Shop/Prestige Upgrades" unique_id=491569356]
 z_index = 2
 offset_top = 251.0
-offset_right = 291.0
+offset_right = 287.0
 offset_bottom = 305.0
 text = "Smart Workers(10 Golden Seeds)
 Worker Efficency x5"
@@ -1611,27 +1652,27 @@ Worker Efficency x5"
 [node name="Autobuyer I" type="Button" parent="Shop/Prestige Upgrades" unique_id=1457239508]
 z_index = 2
 offset_top = 303.0
-offset_right = 291.0
+offset_right = 287.0
 offset_bottom = 357.0
 text = "Autobuyer I(20 Golden Seeds)
 Autobuy Tier 1 Multi-Time Upgrades"
 
-[node name="Golden Saw" type="Button" parent="Shop/Prestige Upgrades" unique_id=2058000782]
+[node name="Golden Axe" type="Button" parent="Shop/Prestige Upgrades" unique_id=2058000782]
 z_index = 2
-offset_left = -3.0
-offset_top = 359.0
-offset_right = 289.0
-offset_bottom = 413.0
+offset_left = -1.0
+offset_top = 354.0
+offset_right = 287.0
+offset_bottom = 408.0
 text = "Golden Axe(25 Golden Seeds)
 x10 click power"
 
 [node name="Saw Efficency" type="Button" parent="Shop/Prestige Upgrades" unique_id=1731549419]
 z_index = 2
 offset_top = 410.0
-offset_right = 292.0
+offset_right = 287.0
 offset_bottom = 464.0
 text = "Saw Efficency(50 Golden Seeds)
-x15 click multiplier"
+x15 click power"
 
 [node name="Prestige Boost" type="Button" parent="Shop/Prestige Upgrades" unique_id=2106129457]
 z_index = 2
@@ -1678,9 +1719,9 @@ offset_top = 200.0
 offset_right = 616.0
 offset_bottom = 255.0
 text = "New Tools(150 Golden Seeds)
-x2 Wood Production"
+x6 Wood Production"
 
-[node name="Golden Axe" type="Button" parent="Shop/Prestige Upgrades" unique_id=2093525156]
+[node name="Golden Saw" type="Button" parent="Shop/Prestige Upgrades" unique_id=2093525156]
 z_index = 2
 offset_left = 291.0
 offset_top = 251.0
@@ -2137,17 +2178,38 @@ autostart = true
 [connection signal="pressed" from="Shop/One-Time Upgrades/Automation Logic Controller" to="." method="_on_automation_logic_controller_pressed"]
 [connection signal="pressed" from="Shop/One-Time Upgrades/Vertical Intergration" to="." method="_on_vertical_intergration_pressed"]
 [connection signal="pressed" from="Shop/One-Time Upgrades/The Eternal Forest" to="." method="_on_the_eternal_forest_pressed"]
-[connection signal="pressed" from="Shop/One-Time Upgrades/Prestige" to="." method="_on_prestige_pressed"]
+[connection signal="pressed" from="Shop/One-Time Upgrades/Biomass Refining" to="." method="_on_biomass_refining_pressed"]
+[connection signal="pressed" from="Shop/One-Time Upgrades/Global Optimisation" to="." method="_on_global_optimisation_pressed"]
+[connection signal="pressed" from="Shop/One-Time Upgrades/Saw Upgrade" to="." method="_on_saw_upgrade_pressed"]
+[connection signal="pressed" from="Shop/One-Time Upgrades/Salary Increase" to="." method="_on_salary_increase_pressed"]
+[connection signal="pressed" from="Shop/One-Time Upgrades/Master Logger" to="." method="_on_master_logger_pressed"]
+[connection signal="pressed" from="Shop/One-Time Upgrades/Prestige Button" to="." method="_on_prestige_pressed"]
 [connection signal="pressed" from="Shop/Prestige Upgrades/They\'re mine!" to="." method="_on_theyre_mine_pressed"]
 [connection signal="pressed" from="Shop/Prestige Upgrades/Fertile Soil" to="." method="_on_fertile_soil_pressed"]
 [connection signal="pressed" from="Shop/Prestige Upgrades/Smart Workers" to="." method="_on_smart_workers_pressed"]
 [connection signal="pressed" from="Shop/Prestige Upgrades/Autobuyer I" to="." method="_on_autobuyer_i_pressed"]
-[connection signal="pressed" from="Shop/Prestige Upgrades/Golden Saw" to="." method="_on_golden_saw_pressed"]
+[connection signal="pressed" from="Shop/Prestige Upgrades/Golden Axe" to="." method="_on_golden_axe_pressed"]
 [connection signal="pressed" from="Shop/Prestige Upgrades/Saw Efficency" to="." method="_on_saw_efficency_pressed"]
 [connection signal="pressed" from="Shop/Prestige Upgrades/Prestige Boost" to="." method="_on_prestige_boost_pressed"]
 [connection signal="pressed" from="Shop/Prestige Upgrades/Discount" to="." method="_on_discount_pressed"]
 [connection signal="pressed" from="Shop/Prestige Upgrades/Autobuyer II" to="." method="_on_autobuyer_ii_pressed"]
+[connection signal="pressed" from="Shop/Prestige Upgrades/Wood Bank" to="." method="_on_wood_bank_pressed"]
+[connection signal="pressed" from="Shop/Prestige Upgrades/New Tools" to="." method="_on_new_tools_pressed"]
+[connection signal="pressed" from="Shop/Prestige Upgrades/Golden Saw" to="." method="_on_golden_saw_pressed"]
 [connection signal="pressed" from="Shop/Prestige Upgrades/Autobuyer III" to="." method="_on_autobuyer_iii_pressed"]
+[connection signal="pressed" from="Shop/Prestige Upgrades/Seed Boost" to="." method="_on_seed_boost_pressed"]
+[connection signal="pressed" from="Shop/Prestige Upgrades/Discount+" to="." method="_on_discount_tier_2_pressed"]
+[connection signal="pressed" from="Shop/Prestige Upgrades/Golden Handle" to="." method="_on_golden_handle_pressed"]
+[connection signal="pressed" from="Shop/Prestige Upgrades/Autobuyer Boost" to="." method="_on_autobuyer_boost_pressed"]
+[connection signal="pressed" from="Shop/Prestige Upgrades/Cost Efficency" to="." method="_on_cost_efficency_pressed"]
+[connection signal="pressed" from="Shop/Prestige Upgrades/Autobuyer IV" to="." method="_on_autobuyer_iv_pressed"]
+[connection signal="pressed" from="Shop/Prestige Upgrades/Cosmic HQ" to="." method="_on_cosmic_hq_pressed"]
+[connection signal="pressed" from="Shop/Prestige Upgrades/Golden Plasma Cutter" to="." method="_on_golden_plasma_cutter_pressed"]
+[connection signal="pressed" from="Shop/Prestige Upgrades/Wood Saving Account" to="." method="_on_wood_saving_account_pressed"]
+[connection signal="pressed" from="Shop/Prestige Upgrades/Autobuyer V" to="." method="_on_autobuyer_v_pressed"]
+[connection signal="pressed" from="Shop/Prestige Upgrades/Milky Way HQ" to="." method="_on_milky_way_hq_pressed"]
+[connection signal="pressed" from="Shop/Prestige Upgrades/Careful Scavenging" to="." method="_on_careful_scavenging_pressed"]
+[connection signal="pressed" from="Shop/Prestige Upgrades/Autobuyer VI" to="." method="_on_autobuyer_vi_pressed"]
 [connection signal="pressed" from="Shop/Prestige Upgrades/Unused/Autobuyer III3" to="." method="_on_autobuyer_iii_pressed"]
 [connection signal="pressed" from="Trees/Tree" to="." method="_on_tree_pressed"]
 [connection signal="pressed" from="Trees/Tree2" to="." method="_on_tree_pressed"]

@@ -95,12 +95,28 @@ var prestige_upgrades = {
 	"fertile_soil": false,
 	"smart_workers": false,
 	"autobuyer_i": false,
-	"golden_saw": false,
+	"golden_axe": false,
 	"saw_efficency": false,
 	"prestige_boost": false,
 	"discount": false,
 	"autobuyer_ii": false,
+	"wood_bank": false,
+	"new_tools": false,
+	"golden_saw": false,
 	"autobuyer_iii": false,
+	"seed_boost": false,
+	"discount+": false,
+	"golden_handle": false,
+	"autobuyer_boost": false,
+	"cost_efficency": false,
+	"autobuyer_iv": false,
+	"cosmic_hq": false,
+	"golden_plasma_cutter": false,
+	"wood_saving_account": false,
+	"autobuyer_v": false,
+	"milky_way_hq": false,
+	"careful_scavenging": false,
+	"autobuyer_vi": false,
 }
 
 # ============================================================================
@@ -603,7 +619,7 @@ func _on_resource_singularity_pressed() -> void:
 			wood -= int(upgrades["resource_singularity"].base_cost * pow(upgrades["resource_singularity"].cost_multiplier, upgrades["resource_singularity"].amount))
 			wood_sec += 45000000000
 			upgrades["resource_singularity"].amount += 1
-	
+
 func _on_currency_button_pressed() -> void:
 	currency_button_tab = 2 if currency_button_tab == 1 else 1
 
@@ -614,7 +630,7 @@ func _on_reinforced_gloves_pressed() -> void:
 	if wood > 499:
 		wood -= 500
 		click_multiplier *= 2
-		click_power += (upgrades["axe_reforge"].amount * 15) + upgrades["axe_skill"].amount
+		click_power *= 2
 		one_time_upgrades["reinforced_gloves"] = true
 		$"Shop/One-Time Upgrades/Reinforced Gloves".hide()
 		save()
@@ -689,7 +705,7 @@ func _on_diamond_coated_teeth_pressed() -> void:
 	if wood > 99999999:
 		wood -= 100000000
 		click_multiplier *= 4
-		click_power += (((upgrades["axe_reforge"].amount * 15) + upgrades["axe_skill"].amount) * int(click_multiplier - 1))
+		click_power *= 4
 		one_time_upgrades["diamond_coated_teeth"] = true
 		$"Shop/One-Time Upgrades/Diamond-Coated Teeth".hide()
 
@@ -715,6 +731,21 @@ func _on_the_eternal_forest_pressed() -> void:
 		one_time_upgrades["the_eternal_forest"] = true
 		$"Shop/One-Time Upgrades/The Eternal Forest".hide()
 
+func _on_biomass_refining_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_global_optimisation_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_saw_upgrade_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_salary_increase_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_master_logger_pressed() -> void:
+	pass # Replace with function body.
+
 # ============================================================================
 # PRESTIGE SYSTEM
 # ============================================================================
@@ -726,20 +757,60 @@ func _on_prestige_pressed() -> void:
 	if seed_gain > 0:
 		golden_seed += int(seed_gain)
 	
+		# Store 10% wood if wood_bank is unlocked
+	var wood_to_keep = 0
+	if prestige_upgrades["wood_bank"]:
+		if prestige_upgrades["wood_saving_account"]:
+				wood_to_keep = int(wood * 0.35) # Keep 35%
+		else:
+			wood_to_keep = int(wood * 0.1)  # Keep 10%
+	else:
+		if prestige_upgrades["wood_saving_account"]:
+			wood_to_keep = int(wood * 0.2)  # Keep 20%
+	
 	# Reset progression
 	reset_progression()
 	
-	# Apply prestige synergies
+	# Add back the stored wood
+	wood = wood_to_keep
+	
+	# Apply synergies
 	if prestige_upgrades["theyre_mine"]:
 		apply_synergies()
 	
+	#Do prestige upgrades
 	if prestige_upgrades["fertile_soil"]:
-		click_power *= 4
+		click_multiplier *= 4
 		wood_sec *= 4
-	
 	if prestige_upgrades["smart_workers"]:
 		worker_efficency *= 5
-		wood_sec += int(upgrades["worker"].amount * 1 * (worker_efficency - 1))
+	if prestige_upgrades["golden_axe"]:
+		click_multiplier *= 10
+	if prestige_upgrades["saw_efficency"]:
+		click_multiplier *= 15
+	if prestige_upgrades["prestige_boost"]:
+		golden_seed_multipiler *= 2
+	if prestige_upgrades["discount"]:
+		cost_multiplier -= 0.03
+	if prestige_upgrades["new_tools"]:
+		click_multiplier *= 6
+		wood_sec *= 6
+	if prestige_upgrades["seed_boost"]:
+		golden_seed_multipiler *= 3
+	if prestige_upgrades["discount+"]:
+		cost_multiplier -= 0.04
+	if prestige_upgrades["golden_handle"]:
+		click_multiplier *= 30
+	if prestige_upgrades["cosmic_hq"]:
+		click_multiplier *= 8
+		wood_sec *= 8
+	if prestige_upgrades["golden_handle"]:
+		click_multiplier *= 50
+	if prestige_upgrades["milky_way_hq"]:
+		click_multiplier *= 15
+		wood_sec *= 15
+	if prestige_upgrades["careful_scavenging"]:
+		golden_seed_multipiler *= 5
 	
 	prestiges += 1
 	save()
@@ -749,6 +820,7 @@ func reset_progression() -> void:
 	wood = 0
 	click_power = 1
 	wood_sec = 0
+	cost_multiplier = COST_MULTIPLIER_DEFAULT
 	
 	for upgrade in upgrades.values():
 		upgrade.amount = 0
@@ -841,17 +913,19 @@ func _on_autobuyer_i_pressed() -> void:
 		prestige_upgrades["autobuyer_i"] = true
 		$"Shop/Prestige Upgrades/Autobuyer I".hide()
 
-func _on_golden_saw_pressed() -> void:
+func _on_golden_axe_pressed() -> void:
 	if golden_seed > 24:
 		golden_seed -= 25
 		click_power *= 10
-		prestige_upgrades["golden_saw"] = true
+		click_multiplier *= 10
+		prestige_upgrades["golden_axe"] = true
 		$"Shop/Prestige Upgrades/Golden Saw".hide()
 
 func _on_saw_efficency_pressed() -> void:
 	if golden_seed > 49:
 		golden_seed -= 50
-		wood_sec *= 15
+		click_multiplier *= 15
+		click_power *= 15
 		prestige_upgrades["saw_efficency"] = true
 		$"Shop/Prestige Upgrades/Saw Efficency".hide()
 
@@ -875,11 +949,124 @@ func _on_autobuyer_ii_pressed() -> void:
 		prestige_upgrades["autobuyer_ii"] = true
 		$"Shop/Prestige Upgrades/Autobuyer II".hide()
 
+func _on_wood_bank_pressed() -> void:
+	if golden_seed > 119:
+		golden_seed -= 120
+		prestige_upgrades["wood_bank"] = true
+		$"Shop/Prestige Upgrades/Wood Bank".hide()
+
+func _on_new_tools_pressed() -> void:
+	if golden_seed > 149:
+		golden_seed -= 150
+		click_power *= 6
+		wood_sec *= 6
+		prestige_upgrades["new_tools"] = true
+		$"Shop/Prestige Upgrades/New Tools".hide()
+
+func _on_golden_saw_pressed() -> void:
+	if golden_seed > 179:
+		golden_seed -= 180
+		click_power *= 20
+		click_multiplier *= 20
+		prestige_upgrades["golden_saw"] = true
+		$"Shop/Prestige Upgrades/Golden Saw".hide()
+
 func _on_autobuyer_iii_pressed() -> void:
 	if golden_seed > 199:
 		golden_seed -= 200
 		prestige_upgrades["autobuyer_iii"] = true
 		$"Shop/Prestige Upgrades/Autobuyer III".hide()
+
+func _on_seed_boost_pressed() -> void:
+	if golden_seed > 199:
+		golden_seed -= 200
+		golden_seed_multipiler *= 3
+		prestige_upgrades["seed_boost"] = true
+		$"Shop/Prestige Upgrades/Seed Boost".hide()
+
+func _on_discount_tier_2_pressed() -> void:
+	if golden_seed > 199:
+		golden_seed -= 200
+		cost_multiplier -= 0.04
+		prestige_upgrades["discount+"] = true
+		$"Shop/Prestige Upgrades/Discount+".hide()
+
+func _on_golden_handle_pressed() -> void:
+	if golden_seed > 299:
+		golden_seed -= 300
+		click_power *= 30
+		click_multiplier *= 30
+		prestige_upgrades["golden_handle"] = true
+		$"Shop/Prestige Upgrades/Golden Handle".hide()
+
+func _on_autobuyer_boost_pressed() -> void:
+	if golden_seed > 399:
+		golden_seed -= 400
+		$"Timers/Autobuyer Timer".wait_time -= 30
+		prestige_upgrades["autobuyer_boost"] = true
+		$"Shop/Prestige Upgrades/Autobuyer Boost".hide()
+
+func _on_cost_efficency_pressed() -> void:
+	if golden_seed > 499:
+		golden_seed -= 500
+		cost_multiplier -= 0.05
+		prestige_upgrades["cost_efficency"] = true
+		$"Shop/Prestige Upgrades/Cost Efficency".hide()
+
+func _on_autobuyer_iv_pressed() -> void:
+	if golden_seed > 599:
+		golden_seed -= 600
+		prestige_upgrades["autobuyer_iv"] = true
+		$"Shop/Prestige Upgrades/Autobuyer IV".hide()
+
+func _on_cosmic_hq_pressed() -> void:
+	if golden_seed > 749:
+		golden_seed -= 750
+		click_power *= 8
+		wood_sec *= 8
+		prestige_upgrades["cosmic_hq"] = true
+		$"Shop/Prestige Upgrades/Cosmic HQ".hide()
+
+func _on_golden_plasma_cutter_pressed() -> void:
+	if golden_seed > 899:
+		golden_seed -= 900
+		click_power *= 50
+		click_multiplier *= 50
+		prestige_upgrades["golden_plasma_cutter"] = true
+		$"Shop/Prestige Upgrades/Golden Plasma Cutter".hide()
+
+func _on_wood_saving_account_pressed() -> void:
+	if golden_seed > 999:
+		golden_seed -= 1000
+		prestige_upgrades["wood_saving_account"] = true
+		$"Shop/Prestige Upgrades/Wood Saving Account".hide()
+
+func _on_autobuyer_v_pressed() -> void:
+	if golden_seed > 199:
+		golden_seed -= 200
+		prestige_upgrades["autobuyer_v"] = true
+		$"Shop/Prestige Upgrades/Autobuyer V".hide()
+
+func _on_milky_way_hq_pressed() -> void:
+	if golden_seed > 1499:
+		golden_seed -= 1500
+		click_power *= 15
+		wood_sec *= 15
+		prestige_upgrades["milky_way_hq"] = true
+		$"Shop/Prestige Upgrades/Milky Way HQ".hide()
+
+func _on_careful_scavenging_pressed() -> void:
+	if golden_seed > 1999:
+		golden_seed -= 2000
+		golden_seed_multipiler *= 5
+		prestige_upgrades["careful_scavenging"] = true
+		$"Shop/Prestige Upgrades/Careful Scavenging".hide()
+
+func _on_autobuyer_vi_pressed() -> void:
+	if golden_seed > 2499:
+		golden_seed -= 2500
+		prestige_upgrades["autobuyer_vi"] = true
+		$"Shop/Prestige Upgrades/Autobuyer VI".hide()
 
 # ============================================================================
 # AUTOBUYER SYSTEM
@@ -891,6 +1078,12 @@ func _on_autobuyer_timer_timeout() -> void:
 		autobuyer_tier_2()
 	if prestige_upgrades["autobuyer_iii"]:
 		autobuyer_tier_3()
+	if prestige_upgrades["autobuyer_iv"]:
+		autobuyer_tier_4()
+	if prestige_upgrades["autobuyer_v"]:
+		autobuyer_tier_5()
+	if prestige_upgrades["autobuyer_vi"]:
+		autobuyer_tier_6()
 
 func autobuyer_tier_1() -> void:
 	if wood > int(upgrades["axe_skill"].base_cost * pow(upgrades["axe_skill"].cost_multiplier, upgrades["axe_skill"].amount)) - 1:
@@ -903,16 +1096,16 @@ func autobuyer_tier_1() -> void:
 			wood -= int(upgrades["worker"].base_cost * pow(upgrades["worker"].cost_multiplier, upgrades["worker"].amount))
 			wood_sec += 1 * cost_multiplier
 			upgrades["worker"].amount += 1
-	if wood > int(upgrades["worker"].base_cost * pow(upgrades["worker"].cost_multiplier, upgrades["worker"].amount)) - 1:
-		if int(upgrades["worker"].base_cost * pow(upgrades["worker"].cost_multiplier, upgrades["worker"].amount)) < 100001:
-			wood -= int(upgrades["worker"].base_cost * pow(upgrades["worker"].cost_multiplier, upgrades["worker"].amount))
-			wood_sec += 1 * cost_multiplier
-			upgrades["worker"].amount += 1
 	if wood > int(upgrades["axe_reforge"].base_cost * pow(upgrades["axe_reforge"].cost_multiplier, upgrades["axe_reforge"].amount)) - 1:
 		if int(upgrades["axe_reforge"].base_cost * pow(upgrades["axe_reforge"].cost_multiplier, upgrades["axe_reforge"].amount)) < 100001:
 			wood -= int(upgrades["axe_reforge"].base_cost * pow(upgrades["axe_reforge"].cost_multiplier, upgrades["axe_reforge"].amount))
 			click_power += int(1 * click_multiplier)
 			upgrades["axe_skill"].amount += 1
+	if wood > upgrades["reinforced_handle"].base_cost * pow(upgrades["reinforced_handle"].cost_multiplier, upgrades["reinforced_handle"].amount) - 1:
+		if upgrades["reinforced_handle"].base_cost * pow(upgrades["reinforced_handle"].cost_multiplier, upgrades["reinforced_handle"].amount) < 100000000001:
+			wood -= int(upgrades["reinforced_handle"].base_cost * pow(upgrades["reinforced_handle"].cost_multiplier, upgrades["reinforced_handle"].amount))
+			click_power += int(40 * click_multiplier)
+			upgrades["reinforced_handle"].amount += 1
 	if wood > int(upgrades["lumberjack_team"].base_cost * pow(upgrades["lumberjack_team"].cost_multiplier, upgrades["lumberjack_team"].amount)) - 1:
 		if int(upgrades["lumberjack_team"].base_cost * pow(upgrades["lumberjack_team"].cost_multiplier, upgrades["lumberjack_team"].amount)) < 100001:
 			wood -= int(upgrades["lumberjack_team"].base_cost * pow(upgrades["lumberjack_team"].cost_multiplier, upgrades["lumberjack_team"].amount))
@@ -923,6 +1116,11 @@ func autobuyer_tier_1() -> void:
 			wood -= int(upgrades["chainsaw_fleet"].base_cost * pow(upgrades["chainsaw_fleet"].cost_multiplier, upgrades["chainsaw_fleet"].amount))
 			wood_sec += int(80 * chainsaw_fleet_efficency)
 			upgrades["chainsaw_fleet"].amount += 1
+	if wood > upgrades["titanium_edge"].base_cost * pow(upgrades["titanium_edge"].cost_multiplier, upgrades["titanium_edge"].amount) - 1:
+		if upgrades["titanium_edge"].base_cost * pow(upgrades["titanium_edge"].cost_multiplier, upgrades["titanium_edge"].amount) < 100000000001:
+			wood -= int(upgrades["titanium_edge"].base_cost * pow(upgrades["titanium_edge"].cost_multiplier, upgrades["titanium_edge"].amount))
+			click_power += int(120 * click_multiplier)
+			upgrades["titanium_edge"].amount += 1
 	if wood > int(upgrades["bulldozers"].base_cost * pow(upgrades["bulldozers"].cost_multiplier, upgrades["bulldozers"].amount)) - 1:
 		if int(upgrades["bulldozers"].base_cost * pow(upgrades["bulldozers"].cost_multiplier, upgrades["bulldozers"].amount)) < 100001:
 			wood -= int(upgrades["bulldozers"].base_cost * pow(upgrades["bulldozers"].cost_multiplier, upgrades["bulldozers"].amount))
@@ -930,6 +1128,11 @@ func autobuyer_tier_1() -> void:
 			upgrades["bulldozers"].amount += 1
 
 func autobuyer_tier_2() -> void:
+	if wood > upgrades["diamond_plating"].base_cost * pow(upgrades["diamond_plating"].cost_multiplier, upgrades["diamond_plating"].amount) - 1:
+		if upgrades["diamond_plating"].base_cost * pow(upgrades["diamond_plating"].cost_multiplier, upgrades["diamond_plating"].amount) < 100000000001:
+			wood -= int(upgrades["diamond_plating"].base_cost * pow(upgrades["diamond_plating"].cost_multiplier, upgrades["diamond_plating"].amount))
+			click_power += int(120 * click_multiplier)
+			upgrades["diamond_plating"].amount += 1
 	if wood > int(upgrades["tree_harvester"].base_cost * pow(upgrades["tree_harvester"].cost_multiplier, upgrades["tree_harvester"].amount)) - 1:
 		if int(upgrades["tree_harvester"].base_cost * pow(upgrades["tree_harvester"].cost_multiplier, upgrades["tree_harvester"].amount)) < 100001:
 			wood -= int(upgrades["tree_harvester"].base_cost * pow(upgrades["tree_harvester"].cost_multiplier, upgrades["tree_harvester"].amount))
@@ -940,10 +1143,164 @@ func autobuyer_tier_2() -> void:
 			wood -= int(upgrades["industrial_mulcher"].base_cost * pow(upgrades["industrial_mulcher"].cost_multiplier, upgrades["industrial_mulcher"].amount))
 			wood_sec += int(1000 * vehicle_efficency)
 			upgrades["industrial_mulcher"].amount += 1
+	if wood > upgrades["plasma_cutter"].base_cost * pow(upgrades["plasma_cutter"].cost_multiplier, upgrades["plasma_cutter"].amount) - 1:
+		if upgrades["plasma_cutter"].base_cost * pow(upgrades["plasma_cutter"].cost_multiplier, upgrades["plasma_cutter"].amount) < 100000000001:
+			wood -= int(upgrades["plasma_cutter"].base_cost * pow(upgrades["plasma_cutter"].cost_multiplier, upgrades["plasma_cutter"].amount))
+			click_power += int(1800 * click_multiplier)
+			upgrades["plasma_cutter"].amount += 1
+	if wood > upgrades["mass_processing_plant"].base_cost * pow(upgrades["mass_processing_plant"].cost_multiplier, upgrades["mass_processing_plant"].amount) - 1:
+		if upgrades["mass_processing_plant"].base_cost * pow(upgrades["mass_processing_plant"].cost_multiplier, upgrades["mass_processing_plant"].amount) < 100000000001:
+			wood -= int(upgrades["mass_processing_plant"].base_cost * pow(upgrades["mass_processing_plant"].cost_multiplier, upgrades["mass_processing_plant"].amount))
+			wood_sec += 2200
+			upgrades["mass_processing_plant"].amount += 1
 
 func autobuyer_tier_3() -> void:
-	pass
+	if wood > upgrades["automated_logging_rig"].base_cost * pow(upgrades["automated_logging_rig"].cost_multiplier, upgrades["automated_logging_rig"].amount) - 1:
+		if upgrades["automated_logging_rig"].base_cost * pow(upgrades["automated_logging_rig"].cost_multiplier, upgrades["automated_logging_rig"].amount) < 100000000001:
+			wood -= int(upgrades["automated_logging_rig"].base_cost * pow(upgrades["automated_logging_rig"].cost_multiplier, upgrades["automated_logging_rig"].amount))
+			wood_sec += 8000
+			upgrades["automated_logging_rig"].amount += 1
+	if wood > upgrades["monocular_slicer"].base_cost * pow(upgrades["monocular_slicer"].cost_multiplier, upgrades["monocular_slicer"].amount) - 1:
+		if upgrades["monocular_slicer"].base_cost * pow(upgrades["monocular_slicer"].cost_multiplier, upgrades["monocular_slicer"].amount) < 100000000001:
+			wood -= int(upgrades["monocular_slicer"].base_cost * pow(upgrades["monocular_slicer"].cost_multiplier, upgrades["monocular_slicer"].amount))
+			click_power += int(8000 * click_multiplier)
+			upgrades["monocular_slicer"].amount += 1
+	if wood > upgrades["bio_diesel_fleet"].base_cost * pow(upgrades["bio_diesel_fleet"].cost_multiplier, upgrades["bio_diesel_fleet"].amount) - 1:
+		if upgrades["bio_diesel_fleet"].base_cost * pow(upgrades["bio_diesel_fleet"].cost_multiplier, upgrades["bio_diesel_fleet"].amount) < 100000000001:
+			wood -= int(upgrades["bio_diesel_fleet"].base_cost * pow(upgrades["bio_diesel_fleet"].cost_multiplier, upgrades["bio_diesel_fleet"].amount))
+			wood_sec += 28000
+			upgrades["bio_diesel_fleet"].amount += 1
+	if wood > upgrades["gravity_axe"].base_cost * pow(upgrades["gravity_axe"].cost_multiplier, upgrades["gravity_axe"].amount) - 1:
+		if upgrades["gravity_axe"].base_cost * pow(upgrades["gravity_axe"].cost_multiplier, upgrades["gravity_axe"].amount) < 100000000001:
+			wood -= int(upgrades["gravity_axe"].base_cost * pow(upgrades["gravity_axe"].cost_multiplier, upgrades["gravity_axe"].amount))
+			click_power += int(35000 * click_multiplier)
+			upgrades["gravity_axe"].amount += 1
 
+func autobuyer_tier_4() -> void:
+	if wood > upgrades["forest_strip_miner"].base_cost * pow(upgrades["forest_strip_miner"].cost_multiplier, upgrades["forest_strip_miner"].amount) - 1:
+		if upgrades["forest_strip_miner"].base_cost * pow(upgrades["forest_strip_miner"].cost_multiplier, upgrades["forest_strip_miner"].amount) < 100000000001:
+			wood -= int(upgrades["forest_strip_miner"].base_cost * pow(upgrades["forest_strip_miner"].cost_multiplier, upgrades["forest_strip_miner"].amount))
+			wood_sec += 110000
+			upgrades["forest_strip_miner"].amount += 1
+	if wood > upgrades["quantum_disintegrator"].base_cost * pow(upgrades["quantum_disintegrator"].cost_multiplier, upgrades["quantum_disintegrator"].amount) - 1:
+		if upgrades["quantum_disintegrator"].base_cost * pow(upgrades["quantum_disintegrator"].cost_multiplier, upgrades["quantum_disintegrator"].amount) < 100000000001:
+			wood -= int(upgrades["quantum_disintegrator"].base_cost * pow(upgrades["quantum_disintegrator"].cost_multiplier, upgrades["quantum_disintegrator"].amount))
+			click_power += int(320000 * click_multiplier)
+			upgrades["quantum_disintegrator"].amount += 1
+	if wood > upgrades["atomic_harvester"].base_cost * pow(upgrades["atomic_harvester"].cost_multiplier, upgrades["atomic_harvester"].amount) - 1:
+		if upgrades["atomic_harvester"].base_cost * pow(upgrades["atomic_harvester"].cost_multiplier, upgrades["atomic_harvester"].amount) < 100000000001:
+			wood -= int(upgrades["atomic_harvester"].base_cost * pow(upgrades["atomic_harvester"].cost_multiplier, upgrades["atomic_harvester"].amount))
+			wood_sec += 850000
+			upgrades["atomic_harvester"].amount += 1
+	if wood > upgrades["molecular_separator"].base_cost * pow(upgrades["molecular_separator"].cost_multiplier, upgrades["molecular_separator"].amount) - 1:
+		if upgrades["molecular_separator"].base_cost * pow(upgrades["molecular_separator"].cost_multiplier, upgrades["molecular_separator"].amount) < 100000000001:
+			wood -= int(upgrades["molecular_separator"].base_cost * pow(upgrades["molecular_separator"].cost_multiplier, upgrades["molecular_separator"].amount))
+			wood_sec += 1600000
+			upgrades["molecular_separator"].amount += 1
+	if wood > upgrades["solar_forged_blade"].base_cost * pow(upgrades["solar_forged_blade"].cost_multiplier, upgrades["solar_forged_blade"].amount) - 1:
+		if upgrades["solar_forged_blade"].base_cost * pow(upgrades["solar_forged_blade"].cost_multiplier, upgrades["solar_forged_blade"].amount) < 100000000001:
+			wood -= int(upgrades["solar_forged_blade"].base_cost * pow(upgrades["solar_forged_blade"].cost_multiplier, upgrades["solar_forged_blade"].amount))
+			click_power += int(1700000 * click_multiplier)
+			upgrades["solar_forged_blade"].amount += 1
+
+func autobuyer_tier_5() -> void:
+	if wood > upgrades["orbital_collecter"].base_cost * pow(upgrades["orbital_collecter"].cost_multiplier, upgrades["orbital_collecter"].amount) - 1:
+		if upgrades["orbital_collecter"].base_cost * pow(upgrades["orbital_collecter"].cost_multiplier, upgrades["orbital_collecter"].amount) < 100000000001:
+			wood -= int(upgrades["orbital_collecter"].base_cost * pow(upgrades["orbital_collecter"].cost_multiplier, upgrades["orbital_collecter"].amount))
+			wood_sec += 7500000
+			upgrades["orbital_collecter"].amount += 1
+	if wood > upgrades["reality_ripper"].base_cost * pow(upgrades["reality_ripper"].cost_multiplier, upgrades["reality_ripper"].amount) - 1:
+		if upgrades["reality_ripper"].base_cost * pow(upgrades["reality_ripper"].cost_multiplier, upgrades["reality_ripper"].amount) < 100000000001:
+			wood -= int(upgrades["reality_ripper"].base_cost * pow(upgrades["reality_ripper"].cost_multiplier, upgrades["reality_ripper"].amount))
+			click_power += int(9000000 * click_multiplier)
+			upgrades["reality_ripper"].amount += 1
+	if wood > upgrades["continental_logger"].base_cost * pow(upgrades["continental_logger"].cost_multiplier, upgrades["continental_logger"].amount) - 1:
+		if upgrades["continental_logger"].base_cost * pow(upgrades["continental_logger"].cost_multiplier, upgrades["continental_logger"].amount) < 100000000001:
+			wood -= int(upgrades["continental_logger"].base_cost * pow(upgrades["continental_logger"].cost_multiplier, upgrades["continental_logger"].amount))
+			wood_sec += 32000000
+			upgrades["continental_logger"].amount += 1
+	if wood > upgrades["infinite_click"].base_cost * pow(upgrades["infinite_click"].cost_multiplier, upgrades["infinite_click"].amount) - 1:
+		if upgrades["infinite_click"].base_cost * pow(upgrades["infinite_click"].cost_multiplier, upgrades["infinite_click"].amount) < 100000000001:
+			wood -= int(upgrades["infinite_click"].base_cost * pow(upgrades["infinite_click"].cost_multiplier, upgrades["infinite_click"].amount))
+			click_power += int(55000000 * click_multiplier)
+			upgrades["infinite_click"].amount += 1
+
+func autobuyer_tier_6() -> void:
+	if wood > upgrades["galactic_harvester"].base_cost * pow(upgrades["galactic_harvester"].cost_multiplier, upgrades["galactic_harvester"].amount) - 1:
+		if upgrades["galactic_harvester"].base_cost * pow(upgrades["galactic_harvester"].cost_multiplier, upgrades["galactic_harvester"].amount) < 100000000001:
+			wood -= int(upgrades["galactic_harvester"].base_cost * pow(upgrades["galactic_harvester"].cost_multiplier, upgrades["galactic_harvester"].amount))
+			wood_sec += 110000000
+			upgrades["galactic_harvester"].amount += 1
+	if wood > upgrades["big_bang_strike"].base_cost * pow(upgrades["big_bang_strike"].cost_multiplier, upgrades["big_bang_strike"].amount) - 1:
+		if upgrades["big_bang_strike"].base_cost * pow(upgrades["big_bang_strike"].cost_multiplier, upgrades["big_bang_strike"].amount) < 100000000001:
+			wood -= int(upgrades["big_bang_strike"].base_cost * pow(upgrades["big_bang_strike"].cost_multiplier, upgrades["big_bang_strike"].amount))
+			click_power += int(115000000 * click_multiplier)
+			upgrades["big_bang_strike"].amount += 1
+	if wood > upgrades["nebula_processor"].base_cost * pow(upgrades["nebula_processor"].cost_multiplier, upgrades["nebula_processor"].amount) - 1:
+		if upgrades["nebula_processor"].base_cost * pow(upgrades["nebula_processor"].cost_multiplier, upgrades["nebula_processor"].amount) < 100000000001:
+			wood -= int(upgrades["nebula_processor"].base_cost * pow(upgrades["nebula_processor"].cost_multiplier, upgrades["nebula_processor"].amount))
+			wood_sec += 320000000
+			upgrades["nebula_processor"].amount += 1
+	if wood > upgrades["planetary_extraction_node"].base_cost * pow(upgrades["planetary_extraction_node"].cost_multiplier, upgrades["planetary_extraction_node"].amount) - 1:
+		if upgrades["planetary_extraction_node"].base_cost * pow(upgrades["planetary_extraction_node"].cost_multiplier, upgrades["planetary_extraction_node"].amount) < 100000000001:
+			wood -= int(upgrades["planetary_extraction_node"].base_cost * pow(upgrades["planetary_extraction_node"].cost_multiplier, upgrades["planetary_extraction_node"].amount))
+			wood_sec += 360000000
+			upgrades["planetary_extraction_node"].amount += 1
+	if wood > upgrades["supernova_chopper"].base_cost * pow(upgrades["supernova_chopper"].cost_multiplier, upgrades["supernova_chopper"].amount) - 1:
+		if upgrades["supernova_chopper"].base_cost * pow(upgrades["supernova_chopper"].cost_multiplier, upgrades["supernova_chopper"].amount) < 100000000001:
+			wood -= int(upgrades["supernova_chopper"].base_cost * pow(upgrades["supernova_chopper"].cost_multiplier, upgrades["supernova_chopper"].amount))
+			click_power += int(430000000 * click_multiplier)
+			upgrades["supernova_chopper"].amount += 1
+	if wood > upgrades["black_hole_extractor"].base_cost * pow(upgrades["black_hole_extractor"].cost_multiplier, upgrades["black_hole_extractor"].amount) - 1:
+		if upgrades["black_hole_extractor"].base_cost * pow(upgrades["black_hole_extractor"].cost_multiplier, upgrades["black_hole_extractor"].amount) < 100000000001:
+			wood -= int(upgrades["black_hole_extractor"].base_cost * pow(upgrades["black_hole_extractor"].cost_multiplier, upgrades["black_hole_extractor"].amount))
+			wood_sec += 1400000000
+			upgrades["black_hole_extractor"].amount += 1
+	if wood > upgrades["galaxy_splitter"].base_cost * pow(upgrades["galaxy_splitter"].cost_multiplier, upgrades["galaxy_splitter"].amount) - 1:
+		if upgrades["galaxy_splitter"].base_cost * pow(upgrades["galaxy_splitter"].cost_multiplier, upgrades["galaxy_splitter"].amount) < 100000000001:
+			wood -= int(upgrades["galaxy_splitter"].base_cost * pow(upgrades["infinite_click"].cost_multiplier, upgrades["galaxy_splitter"].amount))
+			click_power += int(1600000000 * click_multiplier)
+			upgrades["galaxy_splitter"].amount += 1
+	if wood > upgrades["solar_system_silo"].base_cost * pow(upgrades["solar_system_silo"].cost_multiplier, upgrades["solar_system_silo"].amount) - 1:
+		if upgrades["solar_system_silo"].base_cost * pow(upgrades["solar_system_silo"].cost_multiplier, upgrades["solar_system_silo"].amount) < 100000000001:
+			wood -= int(upgrades["solar_system_silo"].base_cost * pow(upgrades["solar_system_silo"].cost_multiplier, upgrades["solar_system_silo"].amount))
+			wood_sec += 3000000000
+			upgrades["solar_system_silo"].amount += 1
+	if wood > upgrades["dyson_sphere_network"].base_cost * pow(upgrades["dyson_sphere_network"].cost_multiplier, upgrades["dyson_sphere_network"].amount) - 1:
+		if upgrades["dyson_sphere_network"].base_cost * pow(upgrades["dyson_sphere_network"].cost_multiplier, upgrades["dyson_sphere_network"].amount) < 100000000001:
+			wood -= int(upgrades["dyson_sphere_network"].base_cost * pow(upgrades["dyson_sphere_network"].cost_multiplier, upgrades["dyson_sphere_network"].amount))
+			wood_sec += 6000000000
+			upgrades["dyson_sphere_network"].amount += 1
+	if wood > upgrades["dimension_shear"].base_cost * pow(upgrades["dimension_shear"].cost_multiplier, upgrades["dimension_shear"].amount) - 1:
+		if upgrades["dimension_shear"].base_cost * pow(upgrades["dimension_shear"].cost_multiplier, upgrades["dimension_shear"].amount) < 100000000001:
+			wood -= int(upgrades["dimension_shear"].base_cost * pow(upgrades["dimension_shear"].cost_multiplier, upgrades["dimension_shear"].amount))
+			click_power += int(7500000000 * click_multiplier)
+			upgrades["dimension_shear"].amount += 1
+	if wood > upgrades["physics_rewriter"].base_cost * pow(upgrades["physics_rewriter"].cost_multiplier, upgrades["physics_rewriter"].amount) - 1:
+		if upgrades["physics_rewriter"].base_cost * pow(upgrades["physics_rewriter"].cost_multiplier, upgrades["physics_rewriter"].amount) < 100000000001:
+			wood -= int(upgrades["physics_rewriter"].base_cost * pow(upgrades["physics_rewriter"].cost_multiplier, upgrades["physics_rewriter"].amount))
+			click_power += int(18000000000 * click_multiplier)
+			upgrades["physics_rewriter"].amount += 1
+	if wood > upgrades["timeline_convergence"].base_cost * pow(upgrades["timeline_convergence"].cost_multiplier, upgrades["timeline_convergence"].amount) - 1:
+		if upgrades["timeline_convergence"].base_cost * pow(upgrades["timeline_convergence"].cost_multiplier, upgrades["timeline_convergence"].amount) < 100000000001:
+			wood -= int(upgrades["timeline_convergence"].base_cost * pow(upgrades["timeline_convergence"].cost_multiplier, upgrades["timeline_convergence"].amount))
+			wood_sec += 18000000000
+			upgrades["timeline_convergence"].amount += 1
+	if wood > upgrades["infinite_energy_engine"].base_cost * pow(upgrades["infinite_energy_engine"].cost_multiplier, upgrades["infinite_energy_engine"].amount) - 1:
+		if upgrades["infinite_energy_engine"].base_cost * pow(upgrades["infinite_energy_engine"].cost_multiplier, upgrades["infinite_energy_engine"].amount) < 100000000001:
+			wood -= int(upgrades["infinite_energy_engine"].base_cost * pow(upgrades["infinite_energy_engine"].cost_multiplier, upgrades["infinite_energy_engine"].amount))
+			wood_sec += 26000000000
+			upgrades["infinite_energy_engine"].amount += 1
+	if wood > upgrades["absolute_tap"].base_cost * pow(upgrades["absolute_tap"].cost_multiplier, upgrades["absolute_tap"].amount) - 1:
+		if upgrades["absolute_tap"].base_cost * pow(upgrades["absolute_tap"].cost_multiplier, upgrades["absolute_tap"].amount) < 100000000001:
+			wood -= int(upgrades["absolute_tap"].base_cost * pow(upgrades["absolute_tap"].cost_multiplier, upgrades["absolute_tap"].amount))
+			click_power += int(45000000000 * click_multiplier)
+			upgrades["absolute_tap"].amount += 1
+	if wood > upgrades["resource_singularity"].base_cost * pow(upgrades["resource_singularity"].cost_multiplier, upgrades["resource_singularity"].amount) - 1:
+		if upgrades["resource_singularity"].base_cost * pow(upgrades["resource_singularity"].cost_multiplier, upgrades["resource_singularity"].amount) < 100000000001:
+			wood -= int(upgrades["resource_singularity"].base_cost * pow(upgrades["resource_singularity"].cost_multiplier, upgrades["resource_singularity"].amount))
+			wood_sec += 45000000000
+			upgrades["resource_singularity"].amount += 1
 # ============================================================================
 # SAVE/LOAD SYSTEM
 # ============================================================================
@@ -1082,8 +1439,38 @@ func refresh_upgrade_visibility() -> void:
 		$"Shop/Prestige Upgrades/Discount".hide()
 	if prestige_upgrades["autobuyer_ii"]:
 		$"Shop/Prestige Upgrades/Autobuyer II".hide()
+	if prestige_upgrades["wood_bank"]:
+		$"Shop/Prestige Upgrades/Wood Bank".hide()
+	if prestige_upgrades["new_tools"]:
+		$"Shop/Prestige Upgrades/New Tools".hide()
+	if prestige_upgrades["golden_saw"]:
+		$"Shop/Prestige Upgrades/Golden Saw".hide()
 	if prestige_upgrades["autobuyer_iii"]:
 		$"Shop/Prestige Upgrades/Autobuyer III".hide()
+	if prestige_upgrades["seed_boost"]:
+		$"Shop/Prestige Upgrades/Seed Boost".hide()
+	if prestige_upgrades["discount+"]:
+		$"Shop/Prestige Upgrades/Discount+".hide()
+	if prestige_upgrades["golden_handle"]:
+		$"Shop/Prestige Upgrades/Golden Axe".hide()
+	if prestige_upgrades["autobuyer_boost"]:
+		$"Shop/Prestige Upgrades/Autobuyer Boost".hide()
+	if prestige_upgrades["autobuyer_iv"]:
+		$"Shop/Prestige Upgrades/Autobuyer IV".hide()
+	if prestige_upgrades["cosmic_hq"]:
+		$"Shop/Prestige Upgrades/Cosmic HQ".hide()
+	if prestige_upgrades["golden_plasma_cuttter"]:
+		$"Shop/Prestige Upgrades/Golden Plasma Cutter".hide()
+	if prestige_upgrades["wood_saving_account"]:
+		$"Shop/Prestige Upgrades/Wood Saving Account".hide()
+	if prestige_upgrades["autobuyer_v"]:
+		$"Shop/Prestige Upgrades/Autobuyer V".hide()
+	if prestige_upgrades["milky_way_hq"]:
+		$"Shop/Prestige Upgrades/Milky Way HQ".hide()
+	if prestige_upgrades["careful_scavenging"]:
+		$"Shop/Prestige Upgrades/Careful Scavenging".hide()
+	if prestige_upgrades["autobuyer_vi"]:
+		$"Shop/Prestige Upgrades/Autobuyer VI".hide()
 
 func _on_save_button_pressed() -> void:
 	save()
