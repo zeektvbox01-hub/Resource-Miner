@@ -1426,6 +1426,7 @@ offset_bottom = 130.0
 text = "Prestige Shop"
 
 [node name="One-Time Upgrades" type="Node2D" parent="Shop" unique_id=1158990690]
+visible = false
 
 [node name="Reinforced Gloves" type="Button" parent="Shop/One-Time Upgrades" unique_id=708477802]
 z_index = 2
@@ -1498,7 +1499,7 @@ offset_top = 494.0
 offset_right = 329.0
 offset_bottom = 548.0
 text = "GPS Mapping(500k wood)
-Critical Click is 4% more likely"
+Critical Click is 40% more likely"
 
 [node name="Shift Management" type="Button" parent="Shop/One-Time Upgrades" unique_id=2128319541]
 z_index = 2
@@ -1543,7 +1544,7 @@ offset_left = 333.0
 offset_top = 205.0
 offset_right = 678.0
 offset_bottom = 259.0
-text = "Autonation Logic Controller(500M wood)
+text = "Automation Logic Controller(500M wood)
 Multi-Time Upgrades Price Multiplier - 0.02
 "
 
@@ -1554,7 +1555,7 @@ offset_top = 257.0
 offset_right = 679.0
 offset_bottom = 311.0
 text = "Vertical Intergration(2.5B wood)
-Wood per second x10
+Wood per sec x10
 "
 
 [node name="The Eternal Forest" type="Button" parent="Shop/One-Time Upgrades" unique_id=1679874035]
@@ -1578,9 +1579,9 @@ Wood Production x12"
 [node name="Global Optimisation" type="Button" parent="Shop/One-Time Upgrades" unique_id=1152985385]
 z_index = 2
 offset_left = 332.0
-offset_top = 406.0
+offset_top = 407.0
 offset_right = 679.0
-offset_bottom = 460.0
+offset_bottom = 461.0
 text = "Global Optimisation(60B wood)
 Multi-Time Upgrades Price Multiplier -0.03"
 
@@ -1622,7 +1623,6 @@ theme_override_font_sizes/font_size = 32
 text = "PRESTIGE"
 
 [node name="Prestige Upgrades" type="Node2D" parent="Shop" unique_id=1340045363]
-visible = false
 
 [node name="They\'re mine!" type="Button" parent="Shop/Prestige Upgrades" unique_id=1081013114]
 z_index = 2
