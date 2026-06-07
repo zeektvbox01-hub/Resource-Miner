@@ -515,10 +515,10 @@ text = "Shop"
 
 [node name="Shop Background" type="NinePatchRect" parent="Shop" unique_id=172490868]
 z_index = 1
-offset_left = -7.000061
-offset_top = 88.99991
-offset_right = 89.09994
-offset_bottom = 145.79991
+offset_left = 6.999999
+offset_top = 89.0
+offset_right = 103.1
+offset_bottom = 145.8
 scale = Vector2(10, 10)
 texture = ExtResource("5_dg77c")
 patch_margin_left = 10
@@ -1426,7 +1426,6 @@ offset_bottom = 130.0
 text = "Prestige Shop"
 
 [node name="One-Time Upgrades" type="Node2D" parent="Shop" unique_id=1158990690]
-visible = false
 
 [node name="Reinforced Gloves" type="Button" parent="Shop/One-Time Upgrades" unique_id=708477802]
 z_index = 2
@@ -1623,6 +1622,7 @@ theme_override_font_sizes/font_size = 32
 text = "PRESTIGE"
 
 [node name="Prestige Upgrades" type="Node2D" parent="Shop" unique_id=1340045363]
+visible = false
 
 [node name="They\'re mine!" type="Button" parent="Shop/Prestige Upgrades" unique_id=1081013114]
 z_index = 2

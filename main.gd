@@ -28,7 +28,7 @@ class UpgradeData:
 
 # Multi-time upgrades
 var upgrades = {
-	"axe_skill": UpgradeData.new("axe_skill", 15, COST_MULTIPLIER_DEFAULT, 1),
+	"axe_skills": UpgradeData.new("axe_skills", 15, COST_MULTIPLIER_DEFAULT, 1),
 	"worker": UpgradeData.new("worker", 50, COST_MULTIPLIER_DEFAULT, 1),
 	"hand_saw": UpgradeData.new("hand_saw", 250, COST_MULTIPLIER_DEFAULT, 4),
 	"axe_reforge": UpgradeData.new("axe_reforge", 1200, COST_MULTIPLIER_DEFAULT, 15),
@@ -46,13 +46,13 @@ var upgrades = {
 	"monoculer_slicer": UpgradeData.new("monocular_slicer", 600000, COST_MULTIPLIER_DEFAULT, 8000),
 	"bio_diesel_fleet": UpgradeData.new("bio_diesel_fleet", 1900000, COST_MULTIPLIER_DEFAULT, 28000),
 	"gravity_axe": UpgradeData.new("gravity_axe", 22000000, COST_MULTIPLIER_DEFAULT, 35000),
-	"forest_strip_miner": UpgradeData.new("forest_strip_miner", 7500000, COST_MULTIPLIER_DEFAULT, 110000),
+	"forest-strip_miner": UpgradeData.new("forest-strip_miner", 7500000, COST_MULTIPLIER_DEFAULT, 110000),
 	"quantum_disintegrator": UpgradeData.new("quantum_disintegrator", 25000000, COST_MULTIPLIER_DEFAULT, 320000),
 	"atomic_harvester": UpgradeData.new("atomic_harvester", 40000000, COST_MULTIPLIER_DEFAULT, 850000),
-	"monocular_separator": UpgradeData.new("monocular_separator", 110000000, COST_MULTIPLIER_DEFAULT, 1600000),
-	"solar_forged_blade": UpgradeData.new("solar_forged_blade", 120000000, COST_MULTIPLIER_DEFAULT, 1700000),
-	"orbital_collecter": UpgradeData.new("solar_forged_blade", 480000000, COST_MULTIPLIER_DEFAULT, 7500000),
-	"reality_ripper": UpgradeData.new("solar_forged_blade", 600000000, COST_MULTIPLIER_DEFAULT, 9000000),
+	"molecular_separator": UpgradeData.new("molecular_separator", 110000000, COST_MULTIPLIER_DEFAULT, 1600000),
+	"solar-forged_blade": UpgradeData.new("solar-forged_blade", 120000000, COST_MULTIPLIER_DEFAULT, 1700000),
+	"orbital_collecter": UpgradeData.new("orbital_collecter", 480000000, COST_MULTIPLIER_DEFAULT, 7500000),
+	"reality_ripper": UpgradeData.new("reality_ripper", 600000000, COST_MULTIPLIER_DEFAULT, 9000000),
 	"continental_logger": UpgradeData.new("continental_logger", 2200000000, COST_MULTIPLIER_DEFAULT, 32000000),
 	"the_infinite_click": UpgradeData.new("the_infinite_click", 4000000000, COST_MULTIPLIER_DEFAULT, 55000000),
 	"galatic_harvester": UpgradeData.new("galatic_harvester", 4500000000, COST_MULTIPLIER_DEFAULT, 110000000),
@@ -197,16 +197,33 @@ func update_upgrade_displays() -> void:
 		var current_cost = upgrade.base_cost * pow(upgrade.cost_multiplier, upgrade.amount)
 		var next_income = upgrade.base_income
 		
-		var node_path = "Shop/Multi-Time Upgrades/" + upgrade_id.to_pascal_case()
+		var node_name = upgrade_id.replace("_", " ").capitalize()
+		var node_path = "Shop/Multi-Time Upgrades/" + node_name
 		var amount_node_path = node_path + "/Amount"
 		
-		if has_node(node_path):
-			var display_cost = format_number(current_cost)
-			var display_current_income = format_number(wood_sec)
-			var display_next_income = format_number(wood_sec + next_income)
+		if not has_node(node_path):
+			continue
+		
+		var display_cost = format_number(int(current_cost))
+		
+		var is_click_upgrade = upgrade_id in ["axe_skill", "axe_reforge", "reinforced_handle", "titanium_edge", "diamond_plating", "plasma_cutter", "gravity_axe", "monocular_separator", "solar_forged_blade", "orbital_collecter", "reality_ripper", "the_infinite_click", "big_bang_strike"]
+		
+		if is_click_upgrade:
+			var display_current_click = format_number(click_power)
+			var display_next_click = format_number(click_power + int(next_income * click_multiplier))
+			
+			get_node(node_path).text = "%s - %s wood\n(%s/click -> %s/click)" % [
+				node_name,
+				display_cost,
+				display_current_click,
+				display_next_click
+			]
+		else:
+			var display_current_income = format_number(int(wood_sec))
+			var display_next_income = format_number(int(wood_sec + next_income))
 			
 			get_node(node_path).text = "%s - %s wood\n(%s/sec -> %s/sec)" % [
-				upgrade_id.to_pascal_case(),
+				node_name,
 				display_cost,
 				display_current_income,
 				display_next_income
@@ -234,9 +251,9 @@ func update_clamp_values() -> void:
 	wood_sec = clampf(wood_sec, 0, MAX_WOOD_SEC)
 	wood = clampi(wood, 0, MAX_WOOD)
 	if wood > 9999999:
-		$"Shop/One-Time Upgrades/Prestige".show()
+		$"Shop/One-Time Upgrades/Prestige Button".show()
 	else:
-		$"Shop/One-Time Upgrades/Prestige".hide()
+		$"Shop/One-Time Upgrades/Prestige Button".hide()
 
 func handle_input() -> void:
 	if Input.is_action_pressed("+ 1000000 wood"):
@@ -333,11 +350,11 @@ func try_buy_upgrade(upgrade_id: String) -> bool:
 	return false
 
 func _on_axe_skills_pressed() -> void:
-	if wood > upgrades["axe_skill"].base_cost * pow(upgrades["axe_skill"].cost_multiplier, upgrades["axe_skill"].amount) - 1:
-		if upgrades["axe_skill"].base_cost * pow(upgrades["axe_skill"].cost_multiplier, upgrades["axe_skill"].amount) < 100000000001:
-			wood -= int(upgrades["axe_skill"].base_cost * pow(upgrades["axe_skill"].cost_multiplier, upgrades["axe_skill"].amount))
+	if wood > upgrades["axe_skills"].base_cost * pow(upgrades["axe_skills"].cost_multiplier, upgrades["axe_skills"].amount) - 1:
+		if upgrades["axe_skills"].base_cost * pow(upgrades["axe_skills"].cost_multiplier, upgrades["axe_skills"].amount) < 100000000001:
+			wood -= int(upgrades["axe_skills"].base_cost * pow(upgrades["axe_skills"].cost_multiplier, upgrades["axe_skills"].amount))
 			click_power += int(1 * click_multiplier)
-			upgrades["axe_skill"].amount += 1
+			upgrades["axe_skills"].amount += 1
 
 func _on_worker_pressed() -> void:
 	if wood > upgrades["worker"].base_cost * pow(upgrades["worker"].cost_multiplier, upgrades["worker"].amount) - 1:
@@ -459,11 +476,11 @@ func _on_gravity_axe_pressed() -> void:
 			upgrades["gravity_axe"].amount += 1
 
 func _on_forest_strip_miner_pressed() -> void:
-	if wood > upgrades["forest_strip_miner"].base_cost * pow(upgrades["forest_strip_miner"].cost_multiplier, upgrades["forest_strip_miner"].amount) - 1:
-		if upgrades["forest_strip_miner"].base_cost * pow(upgrades["forest_strip_miner"].cost_multiplier, upgrades["forest_strip_miner"].amount) < 100000000001:
-			wood -= int(upgrades["forest_strip_miner"].base_cost * pow(upgrades["forest_strip_miner"].cost_multiplier, upgrades["forest_strip_miner"].amount))
+	if wood > upgrades["forest-strip_miner"].base_cost * pow(upgrades["forest-strip_miner"].cost_multiplier, upgrades["forest-strip_miner"].amount) - 1:
+		if upgrades["forest-strip_miner"].base_cost * pow(upgrades["forest-strip_miner"].cost_multiplier, upgrades["forest-strip_miner"].amount) < 100000000001:
+			wood -= int(upgrades["forest-strip_miner"].base_cost * pow(upgrades["forest-strip_miner"].cost_multiplier, upgrades["forest-strip_miner"].amount))
 			wood_sec += int(110000 * wood_sec_multiplier)
-			upgrades["forest_strip_miner"].amount += 1
+			upgrades["forest-strip_miner"].amount += 1
 
 func _on_quantum_disintegrator_pressed() -> void:
 	if wood > upgrades["quantum_disintegrator"].base_cost * pow(upgrades["quantum_disintegrator"].cost_multiplier, upgrades["quantum_disintegrator"].amount) - 1:
@@ -487,11 +504,11 @@ func _on_molecular_separator_pressed() -> void:
 			upgrades["molecular_separator"].amount += 1
 
 func _on_solar_forged_blade_pressed() -> void:
-	if wood > upgrades["solar_forged_blade"].base_cost * pow(upgrades["solar_forged_blade"].cost_multiplier, upgrades["solar_forged_blade"].amount) - 1:
-		if upgrades["solar_forged_blade"].base_cost * pow(upgrades["solar_forged_blade"].cost_multiplier, upgrades["solar_forged_blade"].amount) < 100000000001:
-			wood -= int(upgrades["solar_forged_blade"].base_cost * pow(upgrades["solar_forged_blade"].cost_multiplier, upgrades["solar_forged_blade"].amount))
+	if wood > upgrades["solar-forged_blade"].base_cost * pow(upgrades["solar-forged_blade"].cost_multiplier, upgrades["solar-forged_blade"].amount) - 1:
+		if upgrades["solar-forged_blade"].base_cost * pow(upgrades["solar-forged_blade"].cost_multiplier, upgrades["solar-forged_blade"].amount) < 100000000001:
+			wood -= int(upgrades["solar-forged_blade"].base_cost * pow(upgrades["solar-forged_blade"].cost_multiplier, upgrades["solar-forged_blade"].amount))
 			click_power += int(1700000 * click_multiplier)
-			upgrades["solar_forged_blade"].amount += 1
+			upgrades["solar-forged_blade"].amount += 1
 
 func _on_orbital_collecter_pressed() -> void:
 	if wood > upgrades["orbital_collecter"].base_cost * pow(upgrades["orbital_collecter"].cost_multiplier, upgrades["orbital_collecter"].amount) - 1:
@@ -780,6 +797,7 @@ func _on_master_logger_pressed() -> void:
 		click_multiplier *= 20
 		one_time_upgrades["master_logger"] = true
 		$"Shop/One-Time Upgrades/Master Logger".hide()
+
 # ============================================================================
 # PRESTIGE SYSTEM
 # ============================================================================
@@ -1205,11 +1223,11 @@ func _on_autobuyer_timer_timeout() -> void:
 		autobuyer_tier_6()
 
 func autobuyer_tier_1() -> void:
-	if wood > int(upgrades["axe_skill"].base_cost * pow(upgrades["axe_skill"].cost_multiplier, upgrades["axe_skill"].amount)) - 1:
-		if int(upgrades["axe_skill"].base_cost * pow(upgrades["axe_skill"].cost_multiplier, upgrades["axe_skill"].amount)) < 100001:
-			wood -= int(upgrades["axe_skill"].base_cost * pow(upgrades["axe_skill"].cost_multiplier, upgrades["axe_skill"].amount))
+	if wood > int(upgrades["axe_skills"].base_cost * pow(upgrades["axe_skills"].cost_multiplier, upgrades["axe_skills"].amount)) - 1:
+		if int(upgrades["axe_skills"].base_cost * pow(upgrades["axe_skills"].cost_multiplier, upgrades["axe_skills"].amount)) < 100001:
+			wood -= int(upgrades["axe_skills"].base_cost * pow(upgrades["axe_skills"].cost_multiplier, upgrades["axe_skills"].amount))
 			click_power += int(1 * click_multiplier)
-			upgrades["axe_skill"].amount += 1
+			upgrades["axe_skills"].amount += 1
 	if wood > int(upgrades["worker"].base_cost * pow(upgrades["worker"].cost_multiplier, upgrades["worker"].amount)) - 1:
 		if int(upgrades["worker"].base_cost * pow(upgrades["worker"].cost_multiplier, upgrades["worker"].amount)) < 100001:
 			wood -= int(upgrades["worker"].base_cost * pow(upgrades["worker"].cost_multiplier, upgrades["worker"].amount))
@@ -1219,7 +1237,7 @@ func autobuyer_tier_1() -> void:
 		if int(upgrades["axe_reforge"].base_cost * pow(upgrades["axe_reforge"].cost_multiplier, upgrades["axe_reforge"].amount)) < 100001:
 			wood -= int(upgrades["axe_reforge"].base_cost * pow(upgrades["axe_reforge"].cost_multiplier, upgrades["axe_reforge"].amount))
 			click_power += int(1 * click_multiplier)
-			upgrades["axe_skill"].amount += 1
+			upgrades["axe_reforge"].amount += 1
 	if wood > upgrades["reinforced_handle"].base_cost * pow(upgrades["reinforced_handle"].cost_multiplier, upgrades["reinforced_handle"].amount) - 1:
 		if upgrades["reinforced_handle"].base_cost * pow(upgrades["reinforced_handle"].cost_multiplier, upgrades["reinforced_handle"].amount) < 100000000001:
 			wood -= int(upgrades["reinforced_handle"].base_cost * pow(upgrades["reinforced_handle"].cost_multiplier, upgrades["reinforced_handle"].amount))
@@ -1296,11 +1314,11 @@ func autobuyer_tier_3() -> void:
 			upgrades["gravity_axe"].amount += 1
 
 func autobuyer_tier_4() -> void:
-	if wood > upgrades["forest_strip_miner"].base_cost * pow(upgrades["forest_strip_miner"].cost_multiplier, upgrades["forest_strip_miner"].amount) - 1:
-		if upgrades["forest_strip_miner"].base_cost * pow(upgrades["forest_strip_miner"].cost_multiplier, upgrades["forest_strip_miner"].amount) < 100000000001:
-			wood -= int(upgrades["forest_strip_miner"].base_cost * pow(upgrades["forest_strip_miner"].cost_multiplier, upgrades["forest_strip_miner"].amount))
+	if wood > upgrades["forest-strip_miner"].base_cost * pow(upgrades["forest-strip_miner"].cost_multiplier, upgrades["forest-strip_miner"].amount) - 1:
+		if upgrades["forest-strip_miner"].base_cost * pow(upgrades["forest-strip_miner"].cost_multiplier, upgrades["forest-strip_miner"].amount) < 100000000001:
+			wood -= int(upgrades["forest-strip_miner"].base_cost * pow(upgrades["forest-strip_miner"].cost_multiplier, upgrades["forest-strip_miner"].amount))
 			wood_sec += 110000
-			upgrades["forest_strip_miner"].amount += 1
+			upgrades["forest-strip_miner"].amount += 1
 	if wood > upgrades["quantum_disintegrator"].base_cost * pow(upgrades["quantum_disintegrator"].cost_multiplier, upgrades["quantum_disintegrator"].amount) - 1:
 		if upgrades["quantum_disintegrator"].base_cost * pow(upgrades["quantum_disintegrator"].cost_multiplier, upgrades["quantum_disintegrator"].amount) < 100000000001:
 			wood -= int(upgrades["quantum_disintegrator"].base_cost * pow(upgrades["quantum_disintegrator"].cost_multiplier, upgrades["quantum_disintegrator"].amount))
@@ -1316,11 +1334,11 @@ func autobuyer_tier_4() -> void:
 			wood -= int(upgrades["molecular_separator"].base_cost * pow(upgrades["molecular_separator"].cost_multiplier, upgrades["molecular_separator"].amount))
 			wood_sec += 1600000
 			upgrades["molecular_separator"].amount += 1
-	if wood > upgrades["solar_forged_blade"].base_cost * pow(upgrades["solar_forged_blade"].cost_multiplier, upgrades["solar_forged_blade"].amount) - 1:
-		if upgrades["solar_forged_blade"].base_cost * pow(upgrades["solar_forged_blade"].cost_multiplier, upgrades["solar_forged_blade"].amount) < 100000000001:
-			wood -= int(upgrades["solar_forged_blade"].base_cost * pow(upgrades["solar_forged_blade"].cost_multiplier, upgrades["solar_forged_blade"].amount))
+	if wood > upgrades["solar-forged_blade"].base_cost * pow(upgrades["solar-forged_blade"].cost_multiplier, upgrades["solar-forged_blade"].amount) - 1:
+		if upgrades["solar-forged_blade"].base_cost * pow(upgrades["solar-forged_blade"].cost_multiplier, upgrades["solar-forged_blade"].amount) < 100000000001:
+			wood -= int(upgrades["solar-forged_blade"].base_cost * pow(upgrades["solar-forged_blade"].cost_multiplier, upgrades["solar-forged_blade"].amount))
 			click_power += int(1700000 * click_multiplier)
-			upgrades["solar_forged_blade"].amount += 1
+			upgrades["solar-forged_blade"].amount += 1
 
 func autobuyer_tier_5() -> void:
 	if wood > upgrades["orbital_collecter"].base_cost * pow(upgrades["orbital_collecter"].cost_multiplier, upgrades["orbital_collecter"].amount) - 1:
@@ -1548,6 +1566,7 @@ func refresh_upgrade_visibility() -> void:
 		$"Shop/One-Time Upgrades/Salary Increase".hide()
 	if one_time_upgrades["master_logger"]:
 		$"Shop/One-Time Upgrades/Master Logger".hide()
+	
 	# Prestige upgrades
 	if prestige_upgrades["theyre_mine"]:
 		$"Shop/Prestige Upgrades/They're mine!".hide()
@@ -1587,7 +1606,7 @@ func refresh_upgrade_visibility() -> void:
 		$"Shop/Prestige Upgrades/Autobuyer IV".hide()
 	if prestige_upgrades["cosmic_hq"]:
 		$"Shop/Prestige Upgrades/Cosmic HQ".hide()
-	if prestige_upgrades["golden_plasma_cuttter"]:
+	if prestige_upgrades["golden_plasma_cutter"]:
 		$"Shop/Prestige Upgrades/Golden Plasma Cutter".hide()
 	if prestige_upgrades["wood_saving_account"]:
 		$"Shop/Prestige Upgrades/Wood Saving Account".hide()
