@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bebldsef7u8w6"]
+
+[ext_resource type="Script" uid="uid://ncktxc301ggi" path="res://Scripts/main_menu.gd" id="1_48xlc"]
+[ext_resource type="FontFile" uid="uid://bpe3ct3anr5cb" path="res://Press_Start_2P/PressStart2P-Regular.ttf" id="2_1ehe0"]
+
+[node name="Main Menu" type="Node2D" unique_id=2133365794]
+script = ExtResource("1_48xlc")
+
+[node name="Title" type="Label" parent="." unique_id=1551671501]
+offset_left = 71.0
+offset_top = 23.0
+offset_right = 1223.0
+offset_bottom = 282.0
+theme_override_fonts/font = ExtResource("2_1ehe0")
+theme_override_font_sizes/font_size = 128
+text = "Resource 
+Miner"
+
+[node name="Main Menu Background" type="ColorRect" parent="." unique_id=1148514299]
+z_index = -10
+offset_left = 5.0
+offset_top = 2.0
+offset_right = 1147.0
+offset_bottom = 649.0
+color = Color(4.3317675e-07, 0.459139, 0.2891928, 1)
+
+[node name="Start Button" type="Button" parent="." unique_id=849053422]
+offset_left = -1239.0
+offset_top = 82.0
+offset_right = -507.0
+offset_bottom = 287.0
+theme_override_font_sizes/font_size = 128
+text = "Start"
+
+[connection signal="pressed" from="Start Button" to="." method="_on_start_button_pressed"]

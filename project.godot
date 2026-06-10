@@ -13,7 +13,11 @@ config_version=5
 config/name="Resource Miner"
 run/main_scene="uid://dguxfo6ut34ar"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Images/icon.svg"
+
+[gui]
+
+theme/custom="uid://b1ei30mr2a2em"
 
 [input]
 
