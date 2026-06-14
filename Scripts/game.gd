@@ -6,8 +6,8 @@ extends Node2D
 const SAVE_PATH = "user://variable.save"
 const VERSION = 1
 const MAX_WOOD = 1000000000000
-const MAX_CLICK_POWER = 50000000000
-const MAX_WOOD_SEC = 50000000000
+const MAX_CLICK_POWER = 500000000000
+const MAX_WOOD_SEC = 500000000000
 const COST_MULTIPLIER_DEFAULT = 1.35
 # Hard limit = max safe value for signed 64-bit int
 const MAX_SIGNED_INT: int = 9223372036854775807
@@ -57,7 +57,7 @@ var upgrades = {
 	"orbital_collecter": UpgradeData.new("orbital_collecter", 480000000, COST_MULTIPLIER_DEFAULT, 7500000),
 	"reality_ripper": UpgradeData.new("reality_ripper", 600000000, COST_MULTIPLIER_DEFAULT, 9000000),
 	"continental_logger": UpgradeData.new("continental_logger", 2200000000, COST_MULTIPLIER_DEFAULT, 32000000),
-	"infinite_click": UpgradeData.new("infinite_click", 4000000000, COST_MULTIPLIER_DEFAULT, 55000000),
+	"the_infinite_click": UpgradeData.new("the_infinite_click", 4000000000, COST_MULTIPLIER_DEFAULT, 55000000),
 	"galactic_harvester": UpgradeData.new("galactic_harvester", 4500000000, COST_MULTIPLIER_DEFAULT, 110000000),
 	"big_bang_strike": UpgradeData.new("big_bang_strike", 5000000000, COST_MULTIPLIER_DEFAULT, 115000000),
 	"nebula_processor": UpgradeData.new("nebula_processor", 12000000000, COST_MULTIPLIER_DEFAULT, 320000000),
@@ -153,7 +153,8 @@ var cost_multiplier: float = COST_MULTIPLIER_DEFAULT
 var shop_open: bool = false
 var shop_tab: int = 1
 var currency_button_tab: int = 1
-var last_save_time: int = 0
+var last_save_time: float = 0
+var idle_gains = 0
 
 # ============================================================================
 # LIFECYCLE
@@ -162,8 +163,11 @@ func _ready() -> void:
 	if OS.get_name() == "Web":
 		# Web-specific settings
 		get_window().gui_embed_subwindows = true
-	load_data()
 	$Unused.hide()
+	$"Idle Popup".hide()
+	$"Music/Bird Music".play()
+	$"Music/Rain Music".play()
+	load_data()
 
 func _process(_delta: float) -> void:
 	update_ui()
@@ -196,13 +200,13 @@ func capitalize_each_word(text: String) -> String:
 
 func update_currency_display() -> void:
 	if wood < MAX_WOOD + 1:
-		$"Currency Bar"/Wood.text = str(wood)
+		$"Currency Bar"/Wood.text = format_number(wood)
 	if wood_sec < MAX_WOOD_SEC + 1:
-		$"Currency Bar/Wood per sec".text = str(safe_signed(wood_sec)) + "/sec"
+		$"Currency Bar/Wood per sec".text = format_number(wood_sec) + "/sec"
 	if golden_seed < 100001:
-		$"Currency Bar/Golden Seeds".text = str(golden_seed)
+		$"Currency Bar/Golden Seeds".text = format_number(golden_seed)
 	if click_power < MAX_CLICK_POWER + 1:
-		$Instruction.text = "Click to get " + str(click_power) + " wood"
+		$Instruction.text = "Click to get " + format_number(click_power) + " wood"
 
 func update_upgrade_displays() -> void:
 	for upgrade_id in upgrades:
@@ -210,7 +214,7 @@ func update_upgrade_displays() -> void:
 		var current_cost = upgrade.base_cost * pow(upgrade.cost_multiplier, upgrade.amount)
 		var next_income = upgrade.base_income 
 		
-		var node_name =capitalize_each_word(upgrade_id.replace("_", " "))
+		var node_name = capitalize_each_word(upgrade_id.replace("_", " "))
 		var node_path = "Shop/Multi-Time Scroller/Multi-Time Upgrades/" + node_name
 		var amount_node_path = node_path + "/Amount"
 		
@@ -223,7 +227,12 @@ func update_upgrade_displays() -> void:
 		
 		if is_click_upgrade:
 			var display_current_click = format_number(click_power)
-			var display_next_click = format_number(safe_signed(click_power + (next_income * click_multiplier)))
+			var display_next_click = safe_signed(click_power + (next_income * click_multiplier))
+			
+			if display_next_click > MAX_CLICK_POWER:
+				display_next_click = format_number(MAX_CLICK_POWER)
+			else:
+				display_next_click = format_number(display_next_click)
 			
 			get_node(node_path).text = "%s - %s wood\n(%s/click -> %s/click)" % [
 				node_name,
@@ -233,7 +242,12 @@ func update_upgrade_displays() -> void:
 			]
 		else:
 			var display_current_income = format_number(wood_sec)
-			var display_next_income = format_number(safe_signed(wood_sec + (next_income * wood_sec_multiplier)))
+			var display_next_income = safe_signed(wood_sec + (next_income * wood_sec_multiplier))
+			
+			if display_next_income > MAX_WOOD_SEC:
+				display_next_income = format_number(MAX_WOOD_SEC)
+			else:
+				display_next_income = format_number(display_next_income)
 			
 			get_node(node_path).text = "%s - %s wood\n(%s/sec -> %s/sec)" % [
 				node_name,
@@ -351,20 +365,26 @@ func _on_clicker_pressed() -> void:
 		click_power = MAX_CLICK_POWER
 	var critical_roll: float = randf()
 	if crictical_click  > round(critical_roll * 1000.0) / 1000.0:
-		wood += safe_signed(click_power * click_multiplier * 2)
+		wood += click_power * 2
 	else:
-		wood += safe_signed(click_power * click_multiplier)
+		wood += click_power
+	if wood > MAX_WOOD:
+		wood = MAX_WOOD
 
 func _on_tree_pressed() -> void:
+	if click_power > MAX_CLICK_POWER + 1:
+		click_power = MAX_CLICK_POWER
 	var tree_wood_amount = randi() % 6
 	if tree_wood_amount == 2:
-		wood += 1 * click_power
+		wood += click_power
 	if tree_wood_amount == 3:
-		wood += 1 * click_power
+		wood += click_power
 	if tree_wood_amount == 4:
 		wood += 2 * click_power
 	if tree_wood_amount == 5:
 		wood += 3 * click_power
+	if wood > MAX_WOOD:
+		wood = MAX_WOOD
 
 # ============================================================================
 # MULTI-TIME UPGRADE PURCHASES
@@ -565,11 +585,11 @@ func _on_continental_logger_pressed() -> void:
 			upgrades["continental_logger"].amount += 1
 
 func _on_the_infinite_click_pressed() -> void:
-	if wood > upgrades["infinite_click"].base_cost * pow(upgrades["infinite_click"].cost_multiplier, upgrades["infinite_click"].amount) - 1:
-		if upgrades["infinite_click"].base_cost * pow(upgrades["infinite_click"].cost_multiplier, upgrades["infinite_click"].amount) < 100000000001:
-			wood -= safe_signed(upgrades["infinite_click"].base_cost * pow(upgrades["infinite_click"].cost_multiplier, upgrades["infinite_click"].amount))
-			click_power += safe_signed(upgrades["infinite_click"].base_cost * click_multiplier)
-			upgrades["infinite_click"].amount += 1
+	if wood > upgrades["the_infinite_click"].base_cost * pow(upgrades["the_infinite_click"].cost_multiplier, upgrades["the_infinite_click"].amount) - 1:
+		if upgrades["the_infinite_click"].base_cost * pow(upgrades["the_infinite_click"].cost_multiplier, upgrades["the_infinite_click"].amount) < 100000000001:
+			wood -= safe_signed(upgrades["the_infinite_click"].base_cost * pow(upgrades["the_infinite_click"].cost_multiplier, upgrades["the_infinite_click"].amount))
+			click_power += safe_signed(upgrades["the_infinite_click"].base_cost * click_multiplier)
+			upgrades["the_infinite_click"].amount += 1
 
 func _on_galactic_harvester_pressed() -> void:
 	if wood > upgrades["galactic_harvester"].base_cost * pow(upgrades["galactic_harvester"].cost_multiplier, upgrades["galactic_harvester"].amount) - 1:
@@ -1322,9 +1342,10 @@ func autobuyer_tier_6() -> void:
 
 func save() -> void:
 	var config = ConfigFile.new()
+	last_save_time = Time.get_unix_time_from_system()
+	
 	
 	# Save basic state
-	config.set_value("game", "version", VERSION)
 	config.set_value("game", "wood", wood)
 	config.set_value("game", "click_power", click_power)
 	config.set_value("game", "wood_sec", wood_sec)
@@ -1358,11 +1379,10 @@ func save() -> void:
 
 func load_data() -> void:
 	if not FileAccess.file_exists(SAVE_PATH):
-		print("No Data is avalible")
 		set_process(true)
 		return
-	
 	set_process(false)
+	$"Timers/Autosave Timer".stop()
 	var config = ConfigFile.new()
 	config.load(SAVE_PATH)
 	
@@ -1397,13 +1417,10 @@ func load_data() -> void:
 	
 	# Hide purchased upgrades
 	refresh_upgrade_visibility()
-	
-	# Calculate idle gains
-	var current_time = Time.get_ticks_msec() / 1000.0
-	var seconds_away = current_time - last_save_time
-	wood += safe_signed(seconds_away * wood_sec * idle_efficency)
-	
 	set_process(true)
+	idle_summary()
+
+
 
 func refresh_upgrade_visibility() -> void:
 	# One-time upgrades
@@ -1505,8 +1522,42 @@ func _on_load_button_pressed() -> void:
 func _on_shop_toggle_pressed() -> void:
 	shop_open = !shop_open
 
+#================================================================
+# IDLING
+#=================================================================
+func idle_summary() -> void:
+	$"Idle Popup".show()
+	var current_time = Time.get_unix_time_from_system()
+	var seconds_away = round(current_time - last_save_time)
+	show_idle_summary(seconds_away)
+	idle_gains = safe_signed(round(seconds_away * wood_sec * idle_efficency))
+	if idle_gains + wood > MAX_WOOD:
+		idle_gains = MAX_WOOD - wood
+	$"Idle Popup/Idle Gains Wood".text = format_number(idle_gains)
+	$"Timers/Autosave Timer".start()
+
+func _on_idle_gains_claim_pressed() -> void:
+	wood += idle_gains
+	$"Idle Popup".hide()
+	save()
+
+func show_idle_summary(seconds) -> void:
+	var days_total = 0
+	var hours_total = 0
+	var minute_total = 0
+	if seconds >= 86400:
+		days_total = floor(seconds/84800)
+		seconds -= days_total * 84800
+	if seconds >= 3600:
+		hours_total = floor(seconds/3600)
+		seconds -= hours_total * 3600
+	if seconds >= 60:
+		minute_total = floor(seconds / 60)
+		seconds -= minute_total * 60
+	$"Idle Popup/Offline Time".text = "%s d,%s h,%s m,%s s" %[days_total,hours_total,minute_total,seconds]
+
 #==========================================================================
-# Others
+# OTHERS
 #==========================================================================
 
 func cost_multiplier_setting() -> void:
@@ -1518,3 +1569,7 @@ func cost_multiplier_setting() -> void:
 		cost_multiplier = 1.4
 	else:
 		cost_multiplier = 1.5
+
+
+func _on_rain_music_timer_timeout() -> void:
+	$"Music/Rain Music".play()
