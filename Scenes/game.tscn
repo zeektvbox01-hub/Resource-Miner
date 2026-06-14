@@ -3457,6 +3457,14 @@ offset_bottom = 577.0
 theme_override_font_sizes/font_size = 64
 text = "Claim"
 
+[node name="Screen Backgound" type="ColorRect" parent="." unique_id=807668367]
+z_index = -299
+offset_left = -4192.0
+offset_top = -4037.0
+offset_right = 6957.0
+offset_bottom = 4227.0
+color = Color(0.34337646, 0.20271605, 0.017885435, 1)
+
 [connection signal="pressed" from="Clicker" to="." method="_on_clicker_pressed"]
 [connection signal="pressed" from="Shop/Shop Toggle" to="." method="_on_shop_toggle_pressed"]
 [connection signal="pressed" from="Shop/Multi-Time Scroller/Multi-Time Upgrades/Axe Skill" to="." method="_on_axe_skill_pressed"]
